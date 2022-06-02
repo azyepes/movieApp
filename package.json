@@ -1,0 +1,27 @@
+{
+  "name": "movieapp",
+  "version": "1.0.0",
+  "description": "MovieApp using themoviedb api rest",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azyepes/movieApp.git"
+  },
+  "keywords": [
+    "api",
+    "rest",
+    "movieapp"
+  ],
+  "author": "Luis Yps Fdez <lyepes.developer@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/azyepes/movieApp/issues"
+  },
+  "homepage": "https://github.com/azyepes/movieApp#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.0.24"
+  }
+}

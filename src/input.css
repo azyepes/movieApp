@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* header */
+.category-item {
+    @apply flex items-center justify-center m-2 p-2 border-2 rounded-md
+}
+
+.category-color {
+    @apply w-4 h-4 rounded-sm
+}
+
+/* main */
+.popular-section {
+    @apply w-full h-64 flex items-center justify-around
+}
+
+.popular-poster {
+    @apply w-full h-auto rounded-lg relative
+}
+
+.popular-img {
+    @apply rounded-xl
+}
+
+.popular-img-title {
+    @apply absolute bottom-1 mx-2 text-2xl rounded-md py-1 px-2
+}
+
+.popular-img-title {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.popular-img-description {
+    @apply absolute bottom-0 text-xs ml-2 mb-2
+}
+
+
+.bg-nav {
+    @apply bg-gradient-to-b from-[#000000] to-[#2C3E50] bg-no-repeat bg-contain
+}

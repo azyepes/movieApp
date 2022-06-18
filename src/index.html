@@ -1,19 +1,78 @@
 <!doctype html>
-<html>
+<html class="w-full h-full font-Montserrat text-sm text-white">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="../dist/output.css" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/749147ef9c.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="../assest/watching-a-movie.png" type="image/x-icon">
     <title>Movie at Home</title>
 </head>
-<body>
-    <h1 class="text-3xl font-bold underline bg-red-500">
-    Hello world!!!!
-    </h1>
+<body class="bg-gradient-to-b from-[#04619F] to-[#000000] bg-no-repeat bg-contain">
+    <!-- header -->
+    <header>
+        <nav class="m-3 flex justify-center items-baseline bg-nav rounded-md py-2">
+            <img class="self-center pr-1" src="../assest/watching-a-movie.png" alt="watching-a-movie" width="32">
+            <h1 class="text-xl font-bold text-white">Movie at HOME</h1>
+            <p class="pl-6 pr-1 text-xs">Powered by</p>
+            <a href="https://www.themoviedb.org/" target="_blank"><img class="w-24" src="../assest/logo-tmdb.svg" alt="logo-tmdb"></a>
+        </nav>
+        <h2 class="ml-8">Categories</h2>
 
-    <script src="./src/secrets.js"></script>
-    <script src="./src/index.js"></script>
+        <!-- categorias -->
+        <Section id="category" class="ml-6 flex">
+            <div class="category-item border-yellow-500">
+                <div class="bg-yellow-500 category-color"></div>
+                <h3 class="pl-2"><a href="#">Action</a></h3>
+            </div>
+            <div class="category-item border-blue-500">
+                <div class="bg-blue-500 category-color"></div>
+                <h3 class="pl-2"><a href="#">Comedy</a></h3>
+            </div>
+        </Section>
+    </header>
+    <!-- main  -->
+    <main class="w-full h-auto mb-4">
+        <!-- Lo mas popular -->
+        <section id="popular" class="popular-section">
+            <a id="previuosMovie" href="#"><i class="fa-solid fa-circle-left fa-xl ml-2"></i></a>
+            <article id="mainPoster" class="w-10/12 h-auto mx-auto">
+                <!-- <div class="popular-poster">
+                    <img class="popular-img" src="https://image.tmdb.org/t/p/w500/5tmjv1moohN65IuHAbYjKw3cw7I.jpg" alt="Spiderhead">
+                    <h3 class="popular-img-title">Spiderhead</h3>
+                    <p class="popular-img-description">A prisoner in a state-of-the-art penitentiary begins to question the purpose of the emotion-controlling drugs he's testing for a pharmaceutical genius.</p>
+                </div> -->
+            </article>
+            <a id="nextMovie" href="#"><i class="fa-solid fa-circle-right fa-xl mr-2"></i></a>
+        </section>
+        <!-- recomendados -->
+        <h2 class="ml-8 mb-4">Recomendations</h2>
+        <section id="recomendations" class="w-11/12 h-auto mb-2 mx-auto">
+            <div class="w-32 h-48 border-2 ml-8 rounded-md">
+                
+            </div>
+        </section>
+        <!-- Tendencia -->
+        <h2 class="ml-8 mb-4">Trending</h2>
+        <section id="trending" class="w-11/12 h-auto mx-auto">
+            <div class="w-32 h-48 border-2 ml-8 rounded-md">
+            </div>
+        </section>
+    </main>
+    <!-- footer  -->
+    <footer class="w-full h-20 fixed bottom-0 flex flex-col justify-center border-t-2 bg-nav">
+        <ul class="flex justify-around items-center">
+            <li><i class="fa-solid fa-house-chimney fa-2xl"></i></li>
+            <li><i class="fa-solid fa-magnifying-glass fa-2xl"></i></li>
+            <li><i class="fa-solid fa-plus fa-2xl"></i></li>
+            <li><i class="fa-solid fa-cloud-arrow-down fa-2xl"></i></li>
+            <li><div class="w-8 h-8 border-2 rounded-full"></div></li>
+        </ul>
+    </footer>
+
+    <script src="./secrets.js"></script>
+    <script src="./index.js"></script>
 </body>
 </html>

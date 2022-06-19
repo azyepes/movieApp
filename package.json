@@ -2,7 +2,7 @@
   "name": "movieapp",
   "version": "1.0.0",
   "description": "MovieApp using themoviedb api rest",
-  "main": "./src/index.html",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

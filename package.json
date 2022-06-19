@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/azyepes/movieApp/issues"
   },
-  "homepage": "https://github.com/azyepes/movieApp#readme",
+  "homepage": "https://azyepes.github.io/movieApp/",
   "devDependencies": {
     "tailwindcss": "^3.0.24"
   }

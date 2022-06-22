@@ -1,3 +1,15 @@
+// Variables URL
+const BASE_URL = 'https://api.themoviedb.org/3'
+const TRENDING_MOVIE_DAY = '/trending/movie/day'
+const LANGUAGE = '?language=en-US'
+const GENRE = '/genre/movie/list'
+const DISCOVER = '/discover/movie'
+const POPULARITY = '&sort_by=popularity.desc'
+const TOP_RATE = '/movie/top_rated'
+const UPCOMING = '/movie/upcoming'
+const REGION = '&region=US'
+const API_KEY = "f0497c57ada4a743e060e3cbfc13deb3"
+
 // Axios
 const api = axios.create({
     baseURL: 'https://api.themoviedb.org/3',
@@ -11,18 +23,6 @@ const api = axios.create({
         'region': 'US'
     }
 });
-
-// Variables URL
-const BASE_URL = 'https://api.themoviedb.org/3'
-const TRENDING_MOVIE_DAY = '/trending/movie/day'
-const LANGUAGE = '?language=en-US'
-const GENRE = '/genre/movie/list'
-const DISCOVER = '/discover/movie'
-const POPULARITY = '&sort_by=popularity.desc'
-const TOP_RATE = '/movie/top_rated'
-const UPCOMING = '/movie/upcoming'
-const REGION = '&region=US'
-const API_KEY = "f0497c57ada4a743e060e3cbfc13deb3"
 
 // Variables de HTML
 const mainPoster = document.getElementById('trending-article')

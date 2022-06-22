@@ -39,10 +39,10 @@
                 <label for="series">Series</label> -->
                 <label class="text-black" for="categories">
                     <select class="nav-select" name="categories" id="categories">
-                        <option value="">Categories</option>
+                        <!-- <option value="">Categories</option>
                         <option value="action">Action</option>
                         <option value="Comedy">Comedy</option>
-                        <option value="Dramatic">Dramatic</option>
+                        <option value="Dramatic">Dramatic</option> -->
                     </select>
                 </label>
             </div>
@@ -63,19 +63,28 @@
             <button id="nextMovie" class="w-1/12"><i class="fa-solid fa-angle-right"></i></button>
         </section>
         <section class="popular">
-            <h2 class="title">Most Popular</h2>
+            <div class="flex items-center justify-between">
+                <h2 class="title">Most Popular</h2>
+                <button class="mr-2 text-xs font-semibold border-b-2">Ver Más</button>
+            </div>
             <div id="popular-container" class="popular-container--poster">
                 <!-- <div class="popular-poster"></div> -->
             </div>
         </section>
         <section class="top-rate">
-            <h2 class="title">Top Rated</h2>
+            <div class="flex items-center justify-between">
+                <h2 class="title">Top Rated</h2>
+                <button class="mr-2 text-xs font-semibold border-b-2">Ver Más</button>
+            </div>
             <div id="top-rate-container" class="top-rate-container--poster">
                 <!-- <div class="top-rate-poster"></div> -->
             </div>
         </section>
         <section class="upcoming">
-            <h2 class="title">Upcoming</h2>
+            <div class="flex items-center justify-between">
+                <h2 class="title">Upcoming</h2>
+                <button class="mr-2 text-xs font-semibold border-b-2">Ver Más</button>
+            </div>
             <div id="upcoming-container" class="upcoming-container--poster">
                 <!-- <div class="upcoming-poster"></div> -->
             </div>
@@ -88,7 +97,9 @@
         <a href=""><i class="fa-solid fa-circle-arrow-down fa-xl"></i></a>
         <a href=""><i class="fa-solid fa-user fa-xl"></i></a>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./src/secrets.js"></script>
     <script src="./src/index.js"></script>
+    <script src="./src/navigation.js"></script>
 </body>
 </html>

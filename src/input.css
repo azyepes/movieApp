@@ -59,7 +59,7 @@ nav {
 
 /* main */
 main {
-    @apply w-full h-auto
+    @apply w-full h-auto mb-14
 }
 
 /* trending poster*/

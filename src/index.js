@@ -1,13 +1,28 @@
+// Axios
+const api = axios.create({
+    baseURL: 'https://api.themoviedb.org/3',
+    headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+    },
+    params: {
+        'api_key': API_KEY,
+        'language': 'en-US',
+        'sort_by': 'popularity.desc',
+        'region': 'US'
+    }
+});
+
 // Variables URL
 const BASE_URL = 'https://api.themoviedb.org/3'
 const TRENDING_MOVIE_DAY = '/trending/movie/day'
-const LANGUAGE = '&language=en-US'
+const LANGUAGE = '?language=en-US'
 const GENRE = '/genre/movie/list'
 const DISCOVER = '/discover/movie'
 const POPULARITY = '&sort_by=popularity.desc'
 const TOP_RATE = '/movie/top_rated'
 const UPCOMING = '/movie/upcoming'
 const REGION = '&region=US'
+const API_KEY = "f0497c57ada4a743e060e3cbfc13deb3"
 
 // Variables de HTML
 const mainPoster = document.getElementById('trending-article')
@@ -17,30 +32,33 @@ const popularContainer = document.getElementById('popular-container')
 const topRateContainer = document.getElementById('top-rate-container')
 const upcomingContainer = document.getElementById('upcoming-container')
 
+// Useful variables
+let i = 1
+let limitTrendingMoviesPreview = 19
+let limitMovies = 8
+
 // Categorias de películas / Series (Falta series)
 async function categoriesList() {
-    const res = await fetch(BASE_URL + GENRE + API_KEY + LANGUAGE)
-    const data = await res.json()
+    const { data, status } = await api(GENRE)
 
-    categories = data.genres
+    const genres = data.genres
 
-    categories.forEach(category => {
+    genres.forEach(genre => {
         const selectList = document.getElementById('categories')
 
         const option = document.createElement('option')
-        option.value = category.name
-        option.textContent = category.name
+        option.value = genre.name
+        option.textContent = genre.name
 
         selectList.appendChild(option)
     });
 }
 
-categoriesList()
+// categoriesList()
 
 // Obtener peliculas trending (Falta series)
 async function getTrendingMoviesPreview(i) {
-    const res = await fetch(BASE_URL + TRENDING_MOVIE_DAY + API_KEY + LANGUAGE + REGION)
-    const data = await res.json()
+    const { data } = await api(TRENDING_MOVIE_DAY)
     
     const movies = data.results[i]
 
@@ -59,9 +77,8 @@ async function getTrendingMoviesPreview(i) {
         mainPoster.appendChild(posterContainer)
     }
 }
-let i = 1
-let limitTrendingMoviesPreview = 19
-getTrendingMoviesPreview(i)
+
+// getTrendingMoviesPreview(i)
 
 // Siguiente pelicula
 nextMovieArrow.addEventListener('click', nextMovie)
@@ -104,12 +121,10 @@ function cleaner(section, i) {
 
 // Más populares
 async function getMostPopularMoviesPreview() {
-    const res = await fetch(BASE_URL + DISCOVER + API_KEY + LANGUAGE + POPULARITY + REGION)
-    const data = await res.json()
+    const { data } = await api(DISCOVER)
     
-    const movies = data.results
-    movies.forEach(movie => {
-        
+    for (let i = 0; i < limitMovies; i++) {
+        const movie = data.results[i];
         const linkPoster = document.createElement('a')
         linkPoster.href = '#'
 
@@ -119,46 +134,40 @@ async function getMostPopularMoviesPreview() {
 
         linkPoster.appendChild(posterContainer)
         popularContainer.appendChild(linkPoster)
-    });
+    }   
 }
 
-getMostPopularMoviesPreview()
+// getMostPopularMoviesPreview()
 
 // Top peliculas mejor calificadas
 async function getTopRateMoviesPreview() {
-    const res = await fetch(BASE_URL + TOP_RATE + API_KEY + LANGUAGE + REGION)
-    const data = await res.json()
+    const { data } = await api(TOP_RATE)
     
-    const movies = data.results
-    movies.forEach(movie => {
-        
-        if (movie.original_language === 'en') {
+    for (let i = 0; i < limitMovies; i++) {
+        const movie = data.results[i];
             
-            const linkPoster = document.createElement('a')
-            linkPoster.href = '#'
+        const linkPoster = document.createElement('a')
+        linkPoster.href = '#'
 
-            const posterContainer = document.createElement('div')
-            posterContainer.classList.add('top-rate-poster')
-            posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w300${movie.poster_path}')`
+        const posterContainer = document.createElement('div')
+        posterContainer.classList.add('top-rate-poster')
+        posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w300${movie.poster_path}')`
 
-            linkPoster.appendChild(posterContainer)
-            topRateContainer.appendChild(linkPoster)
-        }
+        linkPoster.appendChild(posterContainer)
+        topRateContainer.appendChild(linkPoster)
         
-    });
+    }
 }
 
-getTopRateMoviesPreview()
+// getTopRateMoviesPreview()
 
-// Colección de peliculas
+// Upcoming movies
 async function getUpcomingMoviesPreview() {
-    const res = await fetch(BASE_URL + UPCOMING + API_KEY + LANGUAGE + REGION)
-    const data = await res.json()
-    console.log(data.results);
-    const movies = data.results
-    movies.forEach(movie => {
-        
-        if (movie.original_language === 'en' && movie.poster_path !== null) {
+    const { data } = await api(UPCOMING)
+
+    for (let i = 0; i < limitMovies; i++) {
+        const movie = data.results[i];
+        if (movie.poster_path !== null) {
             
             const linkPoster = document.createElement('a')
             linkPoster.href = '#'
@@ -170,8 +179,7 @@ async function getUpcomingMoviesPreview() {
             linkPoster.appendChild(posterContainer)
             upcomingContainer.appendChild(linkPoster)
         }
-        
-    });
+    }
 }
 
-getUpcomingMoviesPreview()
+// getUpcomingMoviesPreview()

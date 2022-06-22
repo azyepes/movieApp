@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="w-full h-full font-Montserrat text-sm text-white">
+<html class="font-Montserrat text-white">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,68 +10,84 @@
     <link rel="shortcut icon" href="./assest/watching-a-movie.png" type="image/x-icon">
     <title>Movie at Home</title>
 </head>
-<body class="bg-gradient-to-b from-[#04619F] to-[#000000] bg-no-repeat bg-contain">
+<body>
     <!-- header -->
-    <header>
-        <nav class="m-3 flex justify-center items-baseline bg-nav rounded-md py-2">
-            <img class="self-center pr-1" src="./assest/watching-a-movie.png" alt="watching-a-movie" width="32">
-            <h1 class="text-xl font-bold text-white">Movie at HOME</h1>
-            <p class="pl-6 pr-1 text-xs">Powered by</p>
-            <a href="https://www.themoviedb.org/" target="_blank"><img class="w-24" src="./assest/logo-tmdb.svg" alt="logo-tmdb"></a>
+    <header class="pb-3">
+        <div id="main-banner" class="main-banner">
+            <div class="main-banner--container">
+                <img src="./assest/watching-a-movie.png" alt="logo-movie-at-home" width="28">
+                <h1 class="text-lg tracking-wide">Movie at HOME</h1>
+            </div>
+            <div class="main-banner--container">
+                <p class="powered-by">Powered by</p>
+                <img src="./assest/logo-tmdb.svg" alt="logo-tmdb" width="96">
+            </div>
+        </div>
+        <nav class="nav">
+            <div class="nav-bar--selections">
+                <label class="text-black pr-2" for="options">
+                    <select class="nav-select" name="options" id="options">
+                        <option value="Movies">Movies</option>
+                        <option value="Series">Series</option>
+                    </select>
+                </label>
+                <!-- <button class="nav-button selected" id="movies">Movies</button>
+                <button class="nav-button selected" id="series">Series</button> -->
+                <!-- <input class="checkbox" type="checkbox" name="movies" id="movies" value="Movies">
+                <label for="movies">Movies</label>
+                <input class="checkbox" type="checkbox" name="series" id="series" value="Series">
+                <label for="series">Series</label> -->
+                <label class="text-black" for="categories">
+                    <select class="nav-select" name="categories" id="categories">
+                        <option value="">Categories</option>
+                        <option value="action">Action</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Dramatic">Dramatic</option>
+                    </select>
+                </label>
+            </div>
+            <div class="nav-bar--search">
+                <input class="search-bar" type="text" name="search" id="search" placeholder="Buscar">
+                <button><i class="fa-solid fa-magnifying-glass pl-2"></i></button>
+            </div>
         </nav>
-        <h2 class="ml-8">Categories</h2>
-
-        <!-- categorias -->
-        <Section id="category" class="ml-6 flex">
-            <div class="category-item border-yellow-500">
-                <div class="bg-yellow-500 category-color"></div>
-                <h3 class="pl-2"><a href="#">Action</a></h3>
-            </div>
-            <div class="category-item border-blue-500">
-                <div class="bg-blue-500 category-color"></div>
-                <h3 class="pl-2"><a href="#">Comedy</a></h3>
-            </div>
-        </Section>
     </header>
-    <!-- main  -->
-    <main class="w-full h-auto mb-4">
-        <!-- Lo mas popular -->
-        <section id="popular" class="popular-section">
-            <a id="previuosMovie" href="#"><i class="fa-solid fa-circle-left fa-xl ml-2"></i></a>
-            <article id="mainPoster" class="w-10/12 h-auto mx-auto">
-                <!-- <div class="popular-poster">
-                    <img class="popular-img" src="https://image.tmdb.org/t/p/w500/5tmjv1moohN65IuHAbYjKw3cw7I.jpg" alt="Spiderhead">
-                    <h3 class="popular-img-title">Spiderhead</h3>
-                    <p class="popular-img-description">A prisoner in a state-of-the-art penitentiary begins to question the purpose of the emotion-controlling drugs he's testing for a pharmaceutical genius.</p>
+    <main>
+        <section class="trending">
+            <button id="previuosMovie" class="w-1/12"><i class="fa-solid fa-angle-left"></i></button>
+            <article id="trending-article" class="trending-article">
+                <!-- <div class="trending-poster">
+                    <h3 class="trending-poster--title">Fantastic Beasts: The Secrets of</h3>
                 </div> -->
             </article>
-            <a id="nextMovie" href="#"><i class="fa-solid fa-circle-right fa-xl mr-2"></i></a>
+            <button id="nextMovie" class="w-1/12"><i class="fa-solid fa-angle-right"></i></button>
         </section>
-        <!-- recomendados -->
-        <h2 class="ml-8 mb-4">Recomendations</h2>
-        <section id="recomendations" class="w-11/12 h-auto mb-2 mx-auto">
-            <div class="w-32 h-48 border-2 ml-8 rounded-md">
-                
+        <section class="popular">
+            <h2 class="title">Most Popular</h2>
+            <div id="popular-container" class="popular-container--poster">
+                <!-- <div class="popular-poster"></div> -->
             </div>
         </section>
-        <!-- Tendencia -->
-        <h2 class="ml-8 mb-4">Trending</h2>
-        <section id="trending" class="w-11/12 h-auto mx-auto">
-            <div class="w-32 h-48 border-2 ml-8 rounded-md">
+        <section class="top-rate">
+            <h2 class="title">Top Rated</h2>
+            <div id="top-rate-container" class="top-rate-container--poster">
+                <!-- <div class="top-rate-poster"></div> -->
+            </div>
+        </section>
+        <section class="upcoming">
+            <h2 class="title">Upcoming</h2>
+            <div id="upcoming-container" class="upcoming-container--poster">
+                <!-- <div class="upcoming-poster"></div> -->
             </div>
         </section>
     </main>
-    <!-- footer  -->
-    <footer class="w-full h-20 fixed bottom-0 flex flex-col justify-center border-t-2 bg-nav">
-        <ul class="flex justify-around items-center">
-            <li><i class="fa-solid fa-house-chimney fa-2xl"></i></li>
-            <li><i class="fa-solid fa-magnifying-glass fa-2xl"></i></li>
-            <li><i class="fa-solid fa-plus fa-2xl"></i></li>
-            <li><i class="fa-solid fa-cloud-arrow-down fa-2xl"></i></li>
-            <li><div class="w-8 h-8 border-2 rounded-full"></div></li>
-        </ul>
+    <footer class="footer">
+        <a href="#main-banner"><i class="fa-solid fa-house fa-xl"></i></a>
+        <a href=""><i class="fa-solid fa-magnifying-glass fa-xl"></i></a>
+        <a href=""><i class="fa-solid fa-circle-plus fa-xl"></i></a>
+        <a href=""><i class="fa-solid fa-circle-arrow-down fa-xl"></i></a>
+        <a href=""><i class="fa-solid fa-user fa-xl"></i></a>
     </footer>
-
     <script src="./src/secrets.js"></script>
     <script src="./src/index.js"></script>
 </body>

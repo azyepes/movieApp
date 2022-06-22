@@ -2,41 +2,132 @@
 @tailwind components;
 @tailwind utilities;
 
-/* header */
-.category-item {
-    @apply flex items-center justify-center m-2 p-2 border-2 rounded-md
+html {
+    background-color: #000000;
+    background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
+    background-repeat: no-repeat;
 }
 
-.category-color {
-    @apply w-4 h-4 rounded-sm
+/* body, main, html {
+    width: 425px;
+    max-width: 425px;
+    min-width: 425px;
+} */
+
+/* header */
+header {
+    @apply w-full h-auto
+}
+
+.main-banner {
+    @apply w-full h-auto px-2 mt-4 mb-2 flex justify-between items-center
+}
+
+.main-banner--container {
+    @apply w-1/2 h-auto flex items-center justify-center
+}
+
+.powered-by {
+    font-size: 0.6rem;
+    padding-right: 0.3rem;
+}
+
+/* nav  */
+nav {
+    @apply w-full h-auto px-2 flex justify-between items-center
+}
+
+.nav-bar--selections {
+    @apply  w-1/2 h-auto flex items-center text-xs justify-center p-1
+}
+
+.nav-bar--search {
+    @apply w-1/2 h-auto flex justify-end items-center p-1
+}
+
+.nav-button {
+    @apply pr-3
+}
+
+.search-bar {
+    @apply w-20 h-5 rounded-lg transform duration-300 focus:w-40 text-xs px-2 text-[#04619f] placeholder:text-[#04619f]
+}
+
+.nav-select {
+    @apply h-5 rounded-lg text-[#04619f]
 }
 
 /* main */
-.popular-section {
-    @apply w-full h-64 flex items-center justify-around
+main {
+    @apply w-full h-auto
 }
 
-.popular-poster {
-    @apply w-full h-auto rounded-lg relative
+/* trending poster*/
+.trending {
+    @apply w-full h-48 flex justify-center items-center mt-2 mb-4
 }
 
-.popular-img {
-    @apply rounded-xl
+.trending-article {
+    @apply w-10/12 h-full
 }
 
-.popular-img-title {
-    @apply absolute bottom-1 mx-2 text-2xl rounded-md py-1 px-2
+.trending-poster {
+    @apply w-full h-full rounded-lg border-blue-800 border-2 flex items-end justify-start
 }
 
-.popular-img-title {
-    background-color: rgba(0, 0, 0, 0.6);
+.trending-poster {
+    background-image: url('https://image.tmdb.org/t/p/w300/egoyMDLqCxzjnSrWOz50uLlJWmD.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-box-shadow:0px 0px 10px 2px rgba(255,255,255,0.9);
+    -moz-box-shadow: 0px 0px 10px 2px rgba(255,255,255,0.9);
+    box-shadow: 0px 0px 10px 2px rgba(255,255,255,0.9);   
 }
 
-.popular-img-description {
-    @apply absolute bottom-0 text-xs ml-2 mb-2
+.trending-poster--title {
+    @apply py-1 px-2 ml-2 rounded-lg mb-2 leading-none
 }
 
+.trending-poster--title {
+    min-width: auto;
+    max-width: 95%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
 
-.bg-nav {
-    @apply bg-gradient-to-b from-[#000000] to-[#2C3E50] bg-no-repeat bg-contain
+/* Más populaes */
+.popular, .top-rate, .upcoming {
+    @apply px-4 py-1
+}
+
+.popular-container--poster, .top-rate-container--poster, .upcoming-container--poster {
+    @apply w-full h-52 items-center overflow-x-auto overscroll-x-contain flex space-x-2
+}
+
+.popular-poster, .top-rate-poster, .upcoming-poster {
+    @apply w-32 h-48 rounded-lg border-blue-800 border-2 flex-none
+}
+
+.popular-poster, .top-rate-poster, .upcoming-poster {
+    background-image: url('https://image.tmdb.org/t/p/w300/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.title {
+    @apply text-lg tracking-wide font-semibold pl-3
+}
+
+/* footer */
+.footer {
+    @apply w-full h-14 border-t-2 flex justify-evenly fixed bottom-0 bg-[#04619f]
+}
+
+.footer {
+    border-top: 2px solid white;
+}
+
+.footer a {
+    @apply w-16 h-full flex justify-center items-center
 }

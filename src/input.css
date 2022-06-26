@@ -15,7 +15,6 @@ html {
 }
 
 body {
-    min-width: 425px;
     max-width: 425px;
 }
 
@@ -148,11 +147,11 @@ main {
 
 /* footer */
 footer {
-    width: 425px;
+    max-width: 425px;
 }
 
 footer {
-    @apply h-14 flex justify-evenly bg-[#04619f] fixed bottom-0
+    @apply w-full h-14 justify-evenly flex bg-[#04619f] fixed bottom-0
 }
 
 .footer {

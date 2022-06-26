@@ -548,7 +548,6 @@ html {
 }
 
 body {
-  min-width: 425px;
   max-width: 425px;
   width: 100%;
 }
@@ -789,11 +788,12 @@ main {
 /* footer */
 
 footer {
-  width: 425px;
+  max-width: 425px;
   position: fixed;
   bottom: 0px;
   display: flex;
   height: 3.5rem;
+  width: 100%;
   justify-content: space-evenly;
   --tw-bg-opacity: 1;
   background-color: rgb(4 97 159 / var(--tw-bg-opacity));

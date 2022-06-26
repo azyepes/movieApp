@@ -24,36 +24,30 @@
             </div>
         </div>
         <nav class="nav">
-            <div class="nav-bar--selections">
+            <div id="nav-categories" class="nav-bar--selections">
                 <label class="text-black pr-2" for="options">
                     <select class="nav-select" name="options" id="options">
                         <option value="Movies">Movies</option>
                         <option value="Series">Series</option>
                     </select>
                 </label>
-                <!-- <button class="nav-button selected" id="movies">Movies</button>
-                <button class="nav-button selected" id="series">Series</button> -->
-                <!-- <input class="checkbox" type="checkbox" name="movies" id="movies" value="Movies">
-                <label for="movies">Movies</label>
-                <input class="checkbox" type="checkbox" name="series" id="series" value="Series">
-                <label for="series">Series</label> -->
                 <label class="text-black" for="categories">
                     <select class="nav-select" name="categories" id="categories">
-                        <!-- <option value="">Categories</option>
-                        <option value="action">Action</option>
-                        <option value="Comedy">Comedy</option>
-                        <option value="Dramatic">Dramatic</option> -->
+                        <option value="">Categories</option>
                     </select>
                 </label>
             </div>
-            <div class="nav-bar--search">
-                <input class="search-bar" type="text" name="search" id="search" placeholder="Buscar">
+            <div id="search_id" class="nav-bar--search">
+                <input class="search-bar" type="text" name="search" id="search" placeholder="Busca tu película favorita">
                 <button><i class="fa-solid fa-magnifying-glass pl-2"></i></button>
             </div>
         </nav>
     </header>
     <main>
-        <section class="trending">
+        <section id="trending_search" class="trending_search">
+            <!-- <div class="trending-poster--search_search"></div> -->
+        </section>
+        <section id="trending" class="trending">
             <button id="previuosMovie" class="w-1/12"><i class="fa-solid fa-angle-left"></i></button>
             <article id="trending-article" class="trending-article">
                 <!-- <div class="trending-poster">
@@ -62,7 +56,7 @@
             </article>
             <button id="nextMovie" class="w-1/12"><i class="fa-solid fa-angle-right"></i></button>
         </section>
-        <section class="popular">
+        <section id="popular" class="popular">
             <div class="flex items-center justify-between">
                 <h2 class="title">Most Popular</h2>
                 <button class="mr-2 text-xs font-semibold border-b-2">Ver Más</button>
@@ -71,7 +65,7 @@
                 <!-- <div class="popular-poster"></div> -->
             </div>
         </section>
-        <section class="top-rate">
+        <section id="top-rate" class="top-rate">
             <div class="flex items-center justify-between">
                 <h2 class="title">Top Rated</h2>
                 <button class="mr-2 text-xs font-semibold border-b-2">Ver Más</button>
@@ -80,7 +74,7 @@
                 <!-- <div class="top-rate-poster"></div> -->
             </div>
         </section>
-        <section class="upcoming">
+        <section id="upcoming" class="upcoming">
             <div class="flex items-center justify-between">
                 <h2 class="title">Upcoming</h2>
                 <button class="mr-2 text-xs font-semibold border-b-2">Ver Más</button>
@@ -91,15 +85,16 @@
         </section>
     </main>
     <footer class="footer">
-        <a href="#main-banner"><i class="fa-solid fa-house fa-xl"></i></a>
-        <a href=""><i class="fa-solid fa-magnifying-glass fa-xl"></i></a>
+        <a href="#home"><i class="fa-solid fa-house fa-xl"></i></a>
+        <a href="#search="><i class="fa-solid fa-magnifying-glass fa-xl"></i></a>
         <a href=""><i class="fa-solid fa-circle-plus fa-xl"></i></a>
         <a href=""><i class="fa-solid fa-circle-arrow-down fa-xl"></i></a>
         <a href=""><i class="fa-solid fa-user fa-xl"></i></a>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./src/secrets.js"></script>
-    <script src="./src/index.js"></script>
     <script src="./src/navigation.js"></script>
+    <script src="./src/nodes.js"></script>
+    <script src="./src/index.js"></script>
 </body>
 </html>

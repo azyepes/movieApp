@@ -2,17 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* HTML */
+
 html {
     background-color: #000000;
     background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
     background-repeat: no-repeat;
 }
 
-/* body, main, html {
-    width: 425px;
-    max-width: 425px;
+html {
+    @apply flex justify-center items-center
+}
+
+body {
     min-width: 425px;
-} */
+    max-width: 425px;
+}
+
+body {
+    @apply w-full
+}
 
 /* header */
 header {
@@ -34,15 +43,15 @@ header {
 
 /* nav  */
 nav {
-    @apply w-full h-auto px-2 flex justify-between items-center
+    @apply w-10/12 h-7 mx-auto
 }
 
 .nav-bar--selections {
-    @apply  w-1/2 h-auto flex items-center text-xs justify-center p-1
+    @apply  w-full h-auto flex items-center text-xs justify-around p-1
 }
 
 .nav-bar--search {
-    @apply w-1/2 h-auto flex justify-end items-center p-1
+    @apply w-full h-auto flex justify-center items-center p-1
 }
 
 .nav-button {
@@ -50,7 +59,7 @@ nav {
 }
 
 .search-bar {
-    @apply w-20 h-5 rounded-lg transform duration-300 focus:w-40 text-xs px-2 text-[#04619f] placeholder:text-[#04619f]
+    @apply w-48 h-5 rounded-lg transform duration-300 focus:w-80 text-xs px-2 text-[#04619f] placeholder:text-[#04619f]
 }
 
 .nav-select {
@@ -83,6 +92,24 @@ main {
     -webkit-box-shadow:0px 0px 10px 2px rgba(255,255,255,0.9);
     -moz-box-shadow: 0px 0px 10px 2px rgba(255,255,255,0.9);
     box-shadow: 0px 0px 10px 2px rgba(255,255,255,0.9);   
+}
+
+.trending_search {
+    @apply flex justify-evenly items-end flex-wrap pb-3
+}
+
+.trending-poster--search_search {
+    @apply w-44 h-64 rounded-lg border-blue-800 border-2 mb-6
+}
+
+.trending-poster--search_search {
+    background-image: url('https://image.tmdb.org/t/p/w300/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-box-shadow:0px 0px 5px 2px rgba(255,255,255,0.9);
+    -moz-box-shadow: 0px 0px 5px 2px rgba(255,255,255,0.9);
+    box-shadow: 0px 0px 5px 2px rgba(255,255,255,0.9);  
 }
 
 .trending-poster--title {
@@ -120,8 +147,12 @@ main {
 }
 
 /* footer */
-.footer {
-    @apply w-full h-14 border-t-2 flex justify-evenly fixed bottom-0 bg-[#04619f]
+footer {
+    width: 425px;
+}
+
+footer {
+    @apply h-14 flex justify-evenly bg-[#04619f] fixed bottom-0
 }
 
 .footer {
@@ -130,4 +161,8 @@ main {
 
 .footer a {
     @apply w-16 h-full flex justify-center items-center
+}
+
+.inactive {
+    display: none;
 }

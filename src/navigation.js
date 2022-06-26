@@ -2,7 +2,7 @@ window.addEventListener('DOMContentLoaded', navigator, false)
 window.addEventListener('hashchange', navigator, false)
 
 function navigator() {
-    console.log( { location } );
+    // console.log( { location } );
 
     if (location.hash.startsWith('#trends')) {
         trendPage()
@@ -20,12 +20,21 @@ function navigator() {
 }
 
 function homePage() {
+
+    navCategories.classList.remove('inactive')
+    trending.classList.remove('inactive')
+    popular.classList.remove('inactive')
+    topRate.classList.remove('inactive')
+    upcoming.classList.remove('inactive')
+    trendingSearchPage.classList.add('inactive')
+    searchBar.classList.add('inactive')
+
     categoriesList()
     getTrendingMoviesPreview(i)
     getMostPopularMoviesPreview()
     getTopRateMoviesPreview()
     getUpcomingMoviesPreview()
-    console.log('Home!');
+    // console.log('Home!');
 }
 
 function categoriesPage() {
@@ -37,7 +46,14 @@ function moviePage() {
 }
 
 function searchPage() {
-    console.log('Search!');
+    navCategories.classList.add('inactive')
+    trending.classList.add('inactive')
+    popular.classList.add('inactive')
+    topRate.classList.add('inactive')
+    upcoming.classList.add('inactive')
+    searchBar.classList.remove('inactive')
+    trendingSearchPage.classList.remove('inactive')
+    getTrendingMoviesSearchPage()
 }
 
 function trendPage() {

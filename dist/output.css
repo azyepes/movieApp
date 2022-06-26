@@ -468,14 +468,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-backdrop-sepia:  ;
 }
 
-.ml-3 {
-  margin-left: 0.75rem;
-}
-
-.mr-3 {
-  margin-right: 0.75rem;
-}
-
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -496,47 +488,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   justify-content: space-between;
 }
 
-.rounded-lg {
-  border-radius: 0.5rem;
-}
-
-.rounded-md {
-  border-radius: 0.375rem;
-}
-
-.border-2 {
-  border-width: 2px;
-}
-
 .border-b-2 {
   border-bottom-width: 2px;
-}
-
-.bg-white {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.p-3 {
-  padding: 0.75rem;
-}
-
-.p-2 {
-  padding: 0.5rem;
-}
-
-.p-1 {
-  padding: 0.25rem;
-}
-
-.py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-
-.px-2 {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
 }
 
 .pb-3 {
@@ -551,10 +504,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 0.5rem;
 }
 
-.pr-3 {
-  padding-right: 0.75rem;
-}
-
 .font-Montserrat {
   font-family: Montserrat, sans-serif;
 }
@@ -567,10 +516,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
-}
-
-.font-medium {
-  font-weight: 500;
 }
 
 .font-semibold {
@@ -591,22 +536,22 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
-.text-\[\#04619f\] {
-  --tw-text-opacity: 1;
-  color: rgb(4 97 159 / var(--tw-text-opacity));
-}
+/* HTML */
 
 html {
   background-color: #000000;
   background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
   background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* body, main, html {
-    width: 425px;
-    max-width: 425px;
-    min-width: 425px;
-} */
+body {
+  min-width: 425px;
+  max-width: 425px;
+  width: 100%;
+}
 
 /* header */
 
@@ -643,21 +588,18 @@ header {
 /* nav  */
 
 nav {
-  display: flex;
-  height: auto;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  height: 1.75rem;
+  width: 83.333333%;
 }
 
 .nav-bar--selections {
   display: flex;
   height: auto;
-  width: 50%;
+  width: 100%;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   padding: 0.25rem;
   font-size: 0.75rem;
   line-height: 1rem;
@@ -666,9 +608,9 @@ nav {
 .nav-bar--search {
   display: flex;
   height: auto;
-  width: 50%;
+  width: 100%;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   padding: 0.25rem;
 }
 
@@ -678,7 +620,7 @@ nav {
 
 .search-bar {
   height: 1.25rem;
-  width: 5rem;
+  width: 12rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   border-radius: 0.5rem;
   padding-left: 0.5rem;
@@ -706,7 +648,7 @@ nav {
 }
 
 .search-bar:focus {
-  width: 10rem;
+  width: 20rem;
 }
 
 .nav-select {
@@ -756,6 +698,29 @@ main {
   background-repeat: no-repeat;
   background-position: center;
   box-shadow: 0px 0px 10px 2px rgba(255,255,255,0.9);
+}
+
+.trending_search {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-evenly;
+  padding-bottom: 0.75rem;
+}
+
+.trending-poster--search_search {
+  margin-bottom: 1.5rem;
+  height: 16rem;
+  width: 11rem;
+  border-radius: 0.5rem;
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(30 64 175 / var(--tw-border-opacity));
+  background-image: url('https://image.tmdb.org/t/p/w300/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: 0px 0px 5px 2px rgba(255,255,255,0.9);
 }
 
 .trending-poster--title {
@@ -823,16 +788,18 @@ main {
 
 /* footer */
 
-.footer {
+footer {
+  width: 425px;
   position: fixed;
   bottom: 0px;
   display: flex;
   height: 3.5rem;
-  width: 100%;
   justify-content: space-evenly;
-  border-top-width: 2px;
   --tw-bg-opacity: 1;
   background-color: rgb(4 97 159 / var(--tw-bg-opacity));
+}
+
+.footer {
   border-top: 2px solid white;
 }
 
@@ -842,4 +809,8 @@ main {
   width: 4rem;
   align-items: center;
   justify-content: center;
+}
+
+.inactive {
+  display: none;
 }

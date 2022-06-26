@@ -24,14 +24,6 @@ const api = axios.create({
     }
 });
 
-// Variables de HTML
-const mainPoster = document.getElementById('trending-article')
-const nextMovieArrow = document.getElementById('nextMovie')
-const previuosMovieArrow = document.getElementById('previuosMovie')
-const popularContainer = document.getElementById('popular-container')
-const topRateContainer = document.getElementById('top-rate-container')
-const upcomingContainer = document.getElementById('upcoming-container')
-
 // Useful variables
 let i = 1
 let limitTrendingMoviesPreview = 19
@@ -77,8 +69,6 @@ async function getTrendingMoviesPreview(i) {
         mainPoster.appendChild(posterContainer)
     }
 }
-
-// getTrendingMoviesPreview(i)
 
 // Siguiente pelicula
 nextMovieArrow.addEventListener('click', nextMovie)
@@ -137,8 +127,6 @@ async function getMostPopularMoviesPreview() {
     }   
 }
 
-// getMostPopularMoviesPreview()
-
 // Top peliculas mejor calificadas
 async function getTopRateMoviesPreview() {
     const { data } = await api(TOP_RATE)
@@ -158,8 +146,6 @@ async function getTopRateMoviesPreview() {
         
     }
 }
-
-// getTopRateMoviesPreview()
 
 // Upcoming movies
 async function getUpcomingMoviesPreview() {
@@ -182,4 +168,20 @@ async function getUpcomingMoviesPreview() {
     }
 }
 
-// getUpcomingMoviesPreview()
+// Trending movies en search page
+async function getTrendingMoviesSearchPage() {
+    const { data } = await api(TRENDING_MOVIE_DAY)
+    
+    const movies = data.results
+
+    movies.forEach(movie => {
+        
+        const posterContainer = document.createElement('div')
+        posterContainer.classList.add('trending-poster--search_search')
+        posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w500${movie.poster_path}')`
+
+        trendingSearchPage.appendChild(posterContainer)
+
+    });
+    
+}

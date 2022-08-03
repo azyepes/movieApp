@@ -42,7 +42,7 @@ header {
 
 /* nav  */
 nav {
-    @apply w-10/12 h-7 mx-auto
+    @apply w-4/5 h-7 mx-auto flex justify-around items-center
 }
 
 .nav-bar--selections {
@@ -72,7 +72,7 @@ main {
 
 /* trending poster*/
 .trending {
-    @apply mt-2 mb-4 px-4
+    @apply mb-3 px-4
 }
 
 .trending-article {
@@ -137,6 +137,10 @@ main {
 
 .title {
     @apply text-lg tracking-wide font-semibold pl-3
+}
+
+.seeMoreButton { 
+    @apply mr-2 text-xs
 }
 
 /* footer */

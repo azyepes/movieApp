@@ -28,6 +28,7 @@ function homePage() {
     upcoming.classList.remove('inactive')
     trendingSearchPage.classList.add('inactive')
     searchBar.classList.add('inactive')
+    backButton.classList.add('inactive')
 
     categoriesList()
     getTrendingMoviesPreview()
@@ -53,6 +54,8 @@ function searchPage() {
     upcoming.classList.add('inactive')
     searchBar.classList.remove('inactive')
     trendingSearchPage.classList.remove('inactive')
+    backButton.classList.remove('inactive')
+
     getTrendingMoviesSearchPage()
 }
 

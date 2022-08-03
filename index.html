@@ -12,7 +12,7 @@
 </head>
 <body>
     <!-- header -->
-    <header class="pb-3">
+    <header class="mb-3">
         <div id="main-banner" class="main-banner">
             <div class="main-banner--container">
                 <img src="./assest/watching-a-movie.png" alt="logo-movie-at-home" width="28">
@@ -24,6 +24,7 @@
             </div>
         </div>
         <nav class="nav">
+            <div id="backButton"><i class="fa-solid fa-circle-chevron-left fa-xl"></i></div>
             <div id="nav-categories" class="nav-bar--selections">
                 <label class="text-black pr-2" for="options">
                     <select class="nav-select" name="options" id="options">
@@ -57,27 +58,27 @@
             <!-- <button id="nextMovie" class="w-1/12"><i class="fa-solid fa-angle-right"></i></button> -->
         </section>
         <section id="popular" class="popular">
-            <div class="flex items-center justify-between">
+            <div class="flex items-end justify-between">
                 <h2 class="title">Most Popular</h2>
-                <button class="mr-2 text-xs font-semibold border-b-2">Ver Más</button>
+                <button id="seeMoreButton" class="seeMoreButton">See more</button>
             </div>
             <div id="popular-container" class="popular-container--poster">
                 <!-- <div class="popular-poster"></div> -->
             </div>
         </section>
         <section id="top-rate" class="top-rate">
-            <div class="flex items-center justify-between">
+            <div class="flex items-end justify-between">
                 <h2 class="title">Top Rated</h2>
-                <button class="mr-2 text-xs font-semibold border-b-2">Ver Más</button>
+                <button id="seeMoreButton" class="seeMoreButton">See more</button>
             </div>
             <div id="top-rate-container" class="top-rate-container--poster">
                 <!-- <div class="top-rate-poster"></div> -->
             </div>
         </section>
         <section id="upcoming" class="upcoming">
-            <div class="flex items-center justify-between">
+            <div class="flex items-end justify-between">
                 <h2 class="title">Upcoming</h2>
-                <button class="mr-2 text-xs font-semibold border-b-2">Ver Más</button>
+                <button id="seeMoreButton" class="seeMoreButton">See more</button>
             </div>
             <div id="upcoming-container" class="upcoming-container--poster">
                 <!-- <div class="upcoming-poster"></div> -->

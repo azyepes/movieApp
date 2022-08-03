@@ -71,26 +71,26 @@ async function getTrendingMoviesPreview() {
 }
 
 // Siguiente pelicula
-nextMovieArrow.addEventListener('click', nextMovie)
-function nextMovie() {
-    if (i === limitTrendingMoviesPreview) {
-        i = 0
-    } else {
-        i += 1
-    }
-    getTrendingMoviesPreview(i)
-}
+// nextMovieArrow.addEventListener('click', nextMovie)
+// function nextMovie() {
+//     if (i === limitTrendingMoviesPreview) {
+//         i = 0
+//     } else {
+//         i += 1
+//     }
+//     getTrendingMoviesPreview(i)
+// }
 
 // Pelicula previa
-previuosMovieArrow.addEventListener('click', previuosMovie)
-function previuosMovie() {
-    if (i === 0) {
-        i = limitTrendingMoviesPreview
-    } else {
-        i -= 1
-    }
-    getTrendingMoviesPreview(i)
-}
+// previuosMovieArrow.addEventListener('click', previuosMovie)
+// function previuosMovie() {
+//     if (i === 0) {
+//         i = limitTrendingMoviesPreview
+//     } else {
+//         i -= 1
+//     }
+//     getTrendingMoviesPreview(i)
+// }
 
 async function getMoviesPreviewList(url, container) {
     const { data } = await api(url)
@@ -147,3 +147,7 @@ async function getTrendingMoviesSearchPage() {
     });
     
 }
+
+backButton.addEventListener('click', () => {
+    location.hash = history.back()
+})

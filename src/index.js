@@ -49,25 +49,25 @@ async function categoriesList() {
 // categoriesList()
 
 // Obtener peliculas trending (Falta series)
-async function getTrendingMoviesPreview(i) {
+async function getTrendingMoviesPreview() {
     const { data } = await api(TRENDING_MOVIE_DAY)
     
-    const movies = data.results[i]
+    const movies = data.results
+    console.log(movies);
+    mainPoster.innerHTML = ""
 
-    if (mainPoster.childElementCount !== 0) {
-        cleaner(mainPoster, i)
-    } else {
+    movies.forEach(movie => {
         const posterContainer = document.createElement('div')
         posterContainer.classList.add('trending-poster')
-        posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w300${movies.backdrop_path}')`
+        posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w500${movie.backdrop_path}')`
 
         const posterTitle = document.createElement('h3')
         posterTitle.classList.add('trending-poster--title')
-        posterTitle.textContent = `${movies.title}`
+        posterTitle.textContent = `${movie.title}`
 
         posterContainer.appendChild(posterTitle)
         mainPoster.appendChild(posterContainer)
-    }
+    });
 }
 
 // Siguiente pelicula
@@ -92,80 +92,40 @@ function previuosMovie() {
     getTrendingMoviesPreview(i)
 }
 
-// Limpiar sección
-function cleaner(section, i) {
-    for (let i = 0; i < section.childElementCount; i++) {
-        section.removeChild(section.children[i])        
-    }
+async function getMoviesPreviewList(url, container) {
+    const { data } = await api(url)
+    container.innerHTML = ""
 
-    switch (section) {
-        case mainPoster:
-            
-            getTrendingMoviesPreview(i)
-            break;
-    
-        default:
-            break;
-    }
-}
-
-// Más populares
-async function getMostPopularMoviesPreview() {
-    const { data } = await api(DISCOVER)
-    
     for (let i = 0; i < limitMovies; i++) {
         const movie = data.results[i];
-        const linkPoster = document.createElement('a')
-        linkPoster.href = '#'
 
         const posterContainer = document.createElement('div')
         posterContainer.classList.add('popular-poster')
         posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w300${movie.poster_path}')`
 
-        linkPoster.appendChild(posterContainer)
-        popularContainer.appendChild(linkPoster)
-    }   
+        container.appendChild(posterContainer)
+    }  
+}
+
+// Más populares
+async function getMostPopularMoviesPreview() {
+    
+    getMoviesPreviewList(DISCOVER, popularContainer)
+
 }
 
 // Top peliculas mejor calificadas
 async function getTopRateMoviesPreview() {
-    const { data } = await api(TOP_RATE)
-    
-    for (let i = 0; i < limitMovies; i++) {
-        const movie = data.results[i];
-            
-        const linkPoster = document.createElement('a')
-        linkPoster.href = '#'
 
-        const posterContainer = document.createElement('div')
-        posterContainer.classList.add('top-rate-poster')
-        posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w300${movie.poster_path}')`
+    getMoviesPreviewList(TOP_RATE, topRateContainer)
 
-        linkPoster.appendChild(posterContainer)
-        topRateContainer.appendChild(linkPoster)
-        
-    }
 }
 
 // Upcoming movies
 async function getUpcomingMoviesPreview() {
-    const { data } = await api(UPCOMING)
 
-    for (let i = 0; i < limitMovies; i++) {
-        const movie = data.results[i];
-        if (movie.poster_path !== null) {
-            
-            const linkPoster = document.createElement('a')
-            linkPoster.href = '#'
-
-            const posterContainer = document.createElement('div')
-            posterContainer.classList.add('top-rate-poster')
-            posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w300${movie.poster_path}')`
-
-            linkPoster.appendChild(posterContainer)
-            upcomingContainer.appendChild(linkPoster)
-        }
-    }
+    getMoviesPreviewList(UPCOMING, upcomingContainer)
+    
 }
 
 // Trending movies en search page
@@ -173,6 +133,8 @@ async function getTrendingMoviesSearchPage() {
     const { data } = await api(TRENDING_MOVIE_DAY)
     
     const movies = data.results
+
+    trendingSearchPage.innerHTML = ""
 
     movies.forEach(movie => {
         

@@ -30,7 +30,7 @@ function homePage() {
     searchBar.classList.add('inactive')
 
     categoriesList()
-    getTrendingMoviesPreview(i)
+    getTrendingMoviesPreview()
     getMostPopularMoviesPreview()
     getTopRateMoviesPreview()
     getUpcomingMoviesPreview()

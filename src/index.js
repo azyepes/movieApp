@@ -20,8 +20,7 @@ const api = axios.create({
     params: {
         'api_key': API_KEY,
         'language': 'en-US',
-        'sort_by': 'vote_count.desc',
-        'region': 'US'
+        'region': 'US',
     }
 });
 
@@ -50,7 +49,7 @@ async function categoriesList() {
 // categoriesList()
 
 // Obtener peliculas trending preview (Falta series)
-async function getTrendingMoviesPreview(i, j) {
+async function getTrendingMoviesPreview() {
     const { data } = await api(TRENDING_MOVIE_DAY)
     const movies = data.results
     mainPoster.innerHTML = ""
@@ -91,7 +90,7 @@ async function getTrendingMoviesPreview(i, j) {
 //     getTrendingMoviesPreview(i)
 // }
 
-async function getMoviesPreviewList(url, container, idSectionName, idContainer, href, idButton, x, j) {
+async function getMoviesPreviewList(url, container, idSectionName, idContainer, href, idButton, x, j, params = {}) {
     movieSectionContainer.innerHTML = ""
 
     const sectionPreviewContainer = document.createElement('section')
@@ -117,7 +116,7 @@ async function getMoviesPreviewList(url, container, idSectionName, idContainer, 
     container.setAttribute('id', idContainer)
     container.classList.add('popular-container--poster')
 
-    const { data } = await api(url)
+    const { data } = await api(url, params)
     container.innerHTML = ""
 
     for (let i = 0; i < limitMovies; i++) {
@@ -133,23 +132,23 @@ async function getMoviesPreviewList(url, container, idSectionName, idContainer, 
 }
 
 // Más populares
-function getMostPopularMoviesPreview() {
+async function getMostPopularMoviesPreview() {
     getMoviesPreviewList(POPULAR, 'popularContainer', 'popular', 'popular-container', '#morePopular', 'seeMoreButtonPopular', 0, 0)
 }
 
 // Top peliculas mejor calificadas
-function getTopRateMoviesPreview() {
-    getMoviesPreviewList(DISCOVER, 'topRateContainer', 'top-rate', 'top-rate-container', '#moreTopRate', 'seeMoreButtonTopRate', 1, 0)
-}
+async function getTopRateMoviesPreview() {
+    getMoviesPreviewList(DISCOVER, 'topRateContainer', 'top-rate', 'top-rate-container', '#moreTopRate', 'seeMoreButtonTopRate', 1, 0, { params: { 'sort_by': 'vote_count.desc' } } ) }
 
 // Upcoming movies
-function getUpcomingMoviesPreview() {
+async function getUpcomingMoviesPreview() {
     getMoviesPreviewList(UPCOMING, 'upcomingContainer', 'upcoming', 'upcoming-container', '#moreUpcoming', 'seeMoreButtonUpcoming', 2, 0)
 }
 
 // Movies vista completa
-async function getMoviesCompleteView(url, container, x) {
-    const { data } = await api(url)
+async function getMoviesCompleteView(url, container, x, params = {}) {
+    const { data } = await api(url, params)
+
     const movies = data.results
 
     navTitleSection.textContent = titles[x]
@@ -167,28 +166,35 @@ function getTrendingMoviesSearchPage() {
     getMoviesCompleteView(TRENDING_MOVIE_DAY, completeMovieListSection)
 }
 
-backButton.addEventListener( 'click', () => { history.back() } )
-
-
 function seeMorePopularMovies() {
     getMoviesCompleteView(POPULAR, completeMovieListSection, 0)
 }
 
 function seeMoreTopRateMovies() {
-    getMoviesCompleteView(DISCOVER, completeMovieListSection, 1)
+    getMoviesCompleteView(DISCOVER, completeMovieListSection, 1, { params: { 'sort_by': 'vote_count.desc' } })
 }
 
 function seeMoreUpcomingMovies() {
     getMoviesCompleteView(UPCOMING, completeMovieListSection, 2)
 }
 
-
-searchButton.addEventListener('click', searchMovies)
-
-async function searchMovies() {
-    const { data } = await api(SEARCH_MOVIE)
-
-    const searchInput = search.value
-    console.log(location.hash + searchInput); 
+searchButton.addEventListener('click', getMoviesBySearch)
+document.addEventListener('keypress', (event) => {
     
+    if (event.code === "Enter" || event.code === "NumpadEnter") {
+        getMoviesBySearch()
+    }
+})
+
+backButton.addEventListener( 'click', () => {
+    history.go(-2)
+} )
+
+function getMoviesBySearch() {
+    location.hash = `#search=${search.value}`
+    const [_, value] = location.hash.split('=')
+    const query = decodeURI(value.trim())
+
+    getMoviesCompleteView(SEARCH_MOVIE, completeMovieListSection, 0, { params: { query, 'sort_by': 'vote_count.desc' } })
 }
+

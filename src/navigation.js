@@ -11,7 +11,7 @@ function navigator() {
     } else if (location.hash.startsWith('#category=')) {
         categoriesPage()
     } else if (location.hash.startsWith('#more')) {
-        morePage(location.hash)
+        morePage()
     } else {
         homePage()
     }
@@ -57,7 +57,7 @@ function trendPage() {
     console.log('Trends!');
 }
 
-function morePage(section) {
+function morePage() {
 
     navCategories.classList.add('inactive')
     trending.classList.add('inactive')
@@ -67,11 +67,11 @@ function morePage(section) {
     navTitleSection.classList.remove('inactive')
     movieSectionContainer.classList.add('inactive')
 
-    if (section === '#morePopular') {
+    if (location.hash === '#morePopular') {
         seeMorePopularMovies()
-    } else if (section === '#moreTopRate') {
+    } else if (location.hash === '#moreTopRate') {
         seeMoreTopRateMovies()
-    } else if (section === '#moreUpcoming') {
+    } else if (location.hash === '#moreUpcoming') {
         seeMoreUpcomingMovies()
     } 
 }

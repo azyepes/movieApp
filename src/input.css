@@ -16,10 +16,7 @@ html {
 
 body {
     max-width: 425px;
-}
-
-body {
-    @apply w-full
+    @apply w-full h-screen h-full
 }
 
 /* header */
@@ -85,7 +82,6 @@ main {
 }
 
 .trending-poster {
-    /* background-image: url('https://image.tmdb.org/t/p/w300/egoyMDLqCxzjnSrWOz50uLlJWmD.jpg'); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -103,13 +99,10 @@ main {
 }
 
 .trending-poster--title {
-    @apply py-1 px-2 ml-2 rounded-lg mb-2 leading-none
-}
-
-.trending-poster--title {
     min-width: auto;
     max-width: 95%;
     background-color: rgba(0, 0, 0, 0.7);
+    @apply py-1 px-2 ml-2 rounded-lg mb-2 leading-none
 }
 
 /* Más populaes */
@@ -122,14 +115,10 @@ main {
 }
 
 .popular-poster, .top-rate-poster, .upcoming-poster {
-    @apply w-32 h-48 rounded-lg border-blue-800 border-2 flex-none
-}
-
-.popular-poster, .top-rate-poster, .upcoming-poster {
-    background-image: url('https://image.tmdb.org/t/p/w300/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    @apply w-32 h-48 rounded-lg border-blue-800 border-2 flex-none
 }
 
 .title {
@@ -147,9 +136,6 @@ main {
 /* footer */
 footer {
     max-width: 425px;
-}
-
-footer {
     @apply w-full h-14 justify-evenly flex bg-[#04619f] fixed bottom-0
 }
 

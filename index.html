@@ -23,8 +23,11 @@
                 <img src="./assest/logo-tmdb.svg" alt="logo-tmdb" width="96">
             </div>
         </div>
-        <nav class="nav">
-            <div id="backButton"><i class="fa-solid fa-circle-chevron-left fa-xl"></i></div>
+        <nav id="nav" class="nav">
+            <div id="backButton" class="flex">
+                <i class="fa-solid fa-circle-chevron-left fa-xl"></i>
+                <h2 id="nav-title--section" class="title"></h2>
+            </div>
             <div id="nav-categories" class="nav-bar--selections">
                 <label class="text-black pr-2" for="options">
                     <select class="nav-select" name="options" id="options">
@@ -38,15 +41,15 @@
                     </select>
                 </label>
             </div>
-            <div id="search_id" class="nav-bar--search">
-                <input class="search-bar" type="text" name="search" id="search" placeholder="Busca tu película favorita">
-                <button><i class="fa-solid fa-magnifying-glass pl-2"></i></button>
+            <div id="search_bar" class="nav-bar--search">
+                <input class="search-bar" type="search" name="search" id="search" placeholder="Type here..." autocomplete="off">
+                <button id="search-button"><i class="fa-solid fa-magnifying-glass pl-2"></i></button>
             </div>
         </nav>
     </header>
     <main>
-        <section id="trending_search" class="trending_search">
-            <!-- <div class="trending-poster--search_search"></div> -->
+        <section id="completeMovieListSection" class="completeMovieListSection">
+            <!-- <div class="completeMovieListSection--poster"></div> -->
         </section>
         <section id="trending" class="trending">
             <!-- <button id="previuosMovie" class="w-1/12"><i class="fa-solid fa-angle-left"></i></button> -->
@@ -57,33 +60,17 @@
             </div>
             <!-- <button id="nextMovie" class="w-1/12"><i class="fa-solid fa-angle-right"></i></button> -->
         </section>
-        <section id="popular" class="popular">
-            <div class="flex items-end justify-between">
-                <h2 class="title">Most Popular</h2>
-                <button id="seeMoreButton" class="seeMoreButton">See more</button>
-            </div>
-            <div id="popular-container" class="popular-container--poster">
-                <!-- <div class="popular-poster"></div> -->
-            </div>
-        </section>
-        <section id="top-rate" class="top-rate">
-            <div class="flex items-end justify-between">
-                <h2 class="title">Top Rated</h2>
-                <button id="seeMoreButton" class="seeMoreButton">See more</button>
-            </div>
-            <div id="top-rate-container" class="top-rate-container--poster">
-                <!-- <div class="top-rate-poster"></div> -->
-            </div>
-        </section>
-        <section id="upcoming" class="upcoming">
-            <div class="flex items-end justify-between">
-                <h2 class="title">Upcoming</h2>
-                <button id="seeMoreButton" class="seeMoreButton">See more</button>
-            </div>
-            <div id="upcoming-container" class="upcoming-container--poster">
-                <!-- <div class="upcoming-poster"></div> -->
-            </div>
-        </section>
+        <div id="movieSectionContainer">
+            <!-- <section id="top-rate" class="top-rate">
+                <div class="flex items-end justify-between">
+                    <h2 class="title">Top Rated</h2>
+                    <a href="#moreTopRate" id="seeMoreButtonTopRate" class="seeMoreButton">See more</a>
+                </div>
+                <div id="top-rate-container" class="top-rate-container--poster">
+                    <div class="top-rate-poster"></div>
+                </div>
+            </section> -->
+        </div>
     </main>
     <footer class="footer">
         <a href="#home"><i class="fa-solid fa-house fa-xl"></i></a>
@@ -96,5 +83,6 @@
     <script src="./src/navigation.js"></script>
     <script src="./src/nodes.js"></script>
     <script src="./src/index.js"></script>
+    <script src="./src/listSections.js"></script>
 </body>
 </html>

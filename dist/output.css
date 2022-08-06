@@ -604,13 +604,14 @@ header {
 /* nav  */
 
 nav {
+  width: 375px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 0.5rem;
   display: flex;
   height: 1.75rem;
-  width: 80%;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start
 }
 
 .nav-bar--selections {
@@ -646,28 +647,38 @@ nav {
   padding-right: 0.5rem;
   font-size: 0.75rem;
   line-height: 1rem;
+  font-weight: 600;
   --tw-text-opacity: 1;
   color: rgb(4 97 159 / var(--tw-text-opacity));
+  outline: 2px solid transparent;
+  outline-offset: 2px;
   transition-duration: 300ms;
 }
 
 .search-bar::-moz-placeholder {
+  text-align: center;
   --tw-text-opacity: 1;
   color: rgb(4 97 159 / var(--tw-text-opacity));
+  opacity: 0.75;
 }
 
 .search-bar:-ms-input-placeholder {
+  text-align: center;
   --tw-text-opacity: 1;
   color: rgb(4 97 159 / var(--tw-text-opacity));
+  opacity: 0.75;
 }
 
 .search-bar::placeholder {
+  text-align: center;
   --tw-text-opacity: 1;
   color: rgb(4 97 159 / var(--tw-text-opacity));
+  opacity: 0.75;
 }
 
 .search-bar:focus {
-  width: 20rem;
+  width: 18rem;
+  outline-color: #04619f;
 }
 
 .nav-select {
@@ -695,7 +706,7 @@ main {
 
 .trending-article {
   display: flex;
-  height: 14rem;
+  height: 13rem;
   width: 100%;
   -ms-scroll-snap-type: x var(--tw-scroll-snap-strictness);
       scroll-snap-type: x var(--tw-scroll-snap-strictness);
@@ -732,7 +743,7 @@ main {
   background-position: center;
 }
 
-.trending_search {
+.completeMovieListSection {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
@@ -740,18 +751,17 @@ main {
   padding-bottom: 0.75rem;
 }
 
-.trending-poster--search_search {
+.completeMovieListSection--poster {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   margin-bottom: 1.5rem;
   height: 16rem;
   width: 11rem;
   border-radius: 0.5rem;
   border-width: 2px;
   --tw-border-opacity: 1;
-  border-color: rgb(30 64 175 / var(--tw-border-opacity));
-  background-image: url('https://image.tmdb.org/t/p/w300/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  border-color: rgb(30 64 175 / var(--tw-border-opacity))
 }
 
 .trending-poster--title {
@@ -770,7 +780,7 @@ main {
 
 /* Más populaes */
 
-.popular, .top-rate, .upcoming {
+.popular, .top-rate, .upcoming, .movieSection {
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 0.25rem;
@@ -821,6 +831,12 @@ main {
   margin-right: 0.5rem;
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.titleAndButton {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 
 /* footer */

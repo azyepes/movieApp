@@ -2,8 +2,6 @@ window.addEventListener('DOMContentLoaded', navigator, false)
 window.addEventListener('hashchange', navigator, false)
 
 function navigator() {
-    // console.log( { location } );
-
     if (location.hash.startsWith('#trends')) {
         trendPage()
     } else if (location.hash.startsWith('#search=')) {
@@ -12,30 +10,27 @@ function navigator() {
         moviePage()
     } else if (location.hash.startsWith('#category=')) {
         categoriesPage()
+    } else if (location.hash.startsWith('#more')) {
+        morePage(location.hash)
     } else {
         homePage()
     }
-
-    location.hash
+    window.scrollTo(0,0)
 }
 
 function homePage() {
-
     navCategories.classList.remove('inactive')
     trending.classList.remove('inactive')
-    popular.classList.remove('inactive')
-    topRate.classList.remove('inactive')
-    upcoming.classList.remove('inactive')
-    trendingSearchPage.classList.add('inactive')
+    completeMovieListSection.classList.add('inactive')
     searchBar.classList.add('inactive')
     backButton.classList.add('inactive')
+    movieSectionContainer.classList.remove('inactive')
 
     categoriesList()
     getTrendingMoviesPreview()
     getMostPopularMoviesPreview()
     getTopRateMoviesPreview()
     getUpcomingMoviesPreview()
-    // console.log('Home!');
 }
 
 function categoriesPage() {
@@ -49,16 +44,34 @@ function moviePage() {
 function searchPage() {
     navCategories.classList.add('inactive')
     trending.classList.add('inactive')
-    popular.classList.add('inactive')
-    topRate.classList.add('inactive')
-    upcoming.classList.add('inactive')
     searchBar.classList.remove('inactive')
-    trendingSearchPage.classList.remove('inactive')
+    completeMovieListSection.classList.remove('inactive')
     backButton.classList.remove('inactive')
+    navTitleSection.classList.add('inactive')
+    movieSectionContainer.classList.add('inactive')
 
     getTrendingMoviesSearchPage()
 }
 
 function trendPage() {
     console.log('Trends!');
+}
+
+function morePage(section) {
+
+    navCategories.classList.add('inactive')
+    trending.classList.add('inactive')
+    searchBar.classList.add('inactive')
+    completeMovieListSection.classList.remove('inactive')
+    backButton.classList.remove('inactive')
+    navTitleSection.classList.remove('inactive')
+    movieSectionContainer.classList.add('inactive')
+
+    if (section === '#morePopular') {
+        seeMorePopularMovies()
+    } else if (section === '#moreTopRate') {
+        seeMoreTopRateMovies()
+    } else if (section === '#moreUpcoming') {
+        seeMoreUpcomingMovies()
+    } 
 }

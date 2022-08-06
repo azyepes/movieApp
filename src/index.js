@@ -4,10 +4,11 @@ const TRENDING_MOVIE_DAY = '/trending/movie/day'
 const LANGUAGE = '?language=en-US'
 const GENRE = '/genre/movie/list'
 const DISCOVER = '/discover/movie'
-const POPULARITY = '&sort_by=popularity.desc'
-const TOP_RATE = '/movie/top_rated'
+const POPULAR = '/movie/popular'
+const TOP_RATE = '/movie/top_rated' //'/movie/latest'
 const UPCOMING = '/movie/upcoming'
 const REGION = '&region=US'
+const SEARCH_MOVIE = '/search/movie'
 const API_KEY = "f0497c57ada4a743e060e3cbfc13deb3"
 
 // Axios
@@ -19,7 +20,7 @@ const api = axios.create({
     params: {
         'api_key': API_KEY,
         'language': 'en-US',
-        'sort_by': 'popularity.desc',
+        'sort_by': 'vote_count.desc',
         'region': 'US'
     }
 });
@@ -48,12 +49,10 @@ async function categoriesList() {
 
 // categoriesList()
 
-// Obtener peliculas trending (Falta series)
-async function getTrendingMoviesPreview() {
+// Obtener peliculas trending preview (Falta series)
+async function getTrendingMoviesPreview(i, j) {
     const { data } = await api(TRENDING_MOVIE_DAY)
-    
     const movies = data.results
-    console.log(movies);
     mainPoster.innerHTML = ""
 
     movies.forEach(movie => {
@@ -92,62 +91,104 @@ async function getTrendingMoviesPreview() {
 //     getTrendingMoviesPreview(i)
 // }
 
-async function getMoviesPreviewList(url, container) {
+async function getMoviesPreviewList(url, container, idSectionName, idContainer, href, idButton, x, j) {
+    movieSectionContainer.innerHTML = ""
+
+    const sectionPreviewContainer = document.createElement('section')
+    sectionPreviewContainer.classList.add('movieSection')
+    sectionPreviewContainer.setAttribute('id', idSectionName) 
+    
+    const sectionTitleAndButton = document.createElement('div')
+    sectionTitleAndButton.classList.add('titleAndButton')
+
+    const sectionTittle = document.createElement('h2')
+    sectionTittle.classList.add('title')
+    sectionTittle.textContent = titles[x]
+
+    const sectionButton = document.createElement('a')
+    sectionButton.classList.add('seeMoreButton')
+    sectionButton.setAttribute('href', href)
+    sectionButton.setAttribute('id', idButton)
+    sectionButton.textContent = buttons[j]
+
+    sectionTitleAndButton.append(sectionTittle, sectionButton)
+
+    container = document.createElement('div')
+    container.setAttribute('id', idContainer)
+    container.classList.add('popular-container--poster')
+
     const { data } = await api(url)
     container.innerHTML = ""
 
     for (let i = 0; i < limitMovies; i++) {
         const movie = data.results[i];
-
         const posterContainer = document.createElement('div')
         posterContainer.classList.add('popular-poster')
         posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w300${movie.poster_path}')`
-
         container.appendChild(posterContainer)
     }  
+
+    sectionPreviewContainer.append(sectionTitleAndButton, container)
+    movieSectionContainer.appendChild(sectionPreviewContainer)
 }
 
 // Más populares
-async function getMostPopularMoviesPreview() {
-    
-    getMoviesPreviewList(DISCOVER, popularContainer)
-
+function getMostPopularMoviesPreview() {
+    getMoviesPreviewList(POPULAR, 'popularContainer', 'popular', 'popular-container', '#morePopular', 'seeMoreButtonPopular', 0, 0)
 }
 
 // Top peliculas mejor calificadas
-async function getTopRateMoviesPreview() {
-
-    getMoviesPreviewList(TOP_RATE, topRateContainer)
-
+function getTopRateMoviesPreview() {
+    getMoviesPreviewList(DISCOVER, 'topRateContainer', 'top-rate', 'top-rate-container', '#moreTopRate', 'seeMoreButtonTopRate', 1, 0)
 }
 
 // Upcoming movies
-async function getUpcomingMoviesPreview() {
-
-    getMoviesPreviewList(UPCOMING, upcomingContainer)
-    
+function getUpcomingMoviesPreview() {
+    getMoviesPreviewList(UPCOMING, 'upcomingContainer', 'upcoming', 'upcoming-container', '#moreUpcoming', 'seeMoreButtonUpcoming', 2, 0)
 }
 
-// Trending movies en search page
-async function getTrendingMoviesSearchPage() {
-    const { data } = await api(TRENDING_MOVIE_DAY)
-    
+// Movies vista completa
+async function getMoviesCompleteView(url, container, x) {
+    const { data } = await api(url)
     const movies = data.results
 
-    trendingSearchPage.innerHTML = ""
+    navTitleSection.textContent = titles[x]
+    container.innerHTML = ""
 
     movies.forEach(movie => {
-        
         const posterContainer = document.createElement('div')
-        posterContainer.classList.add('trending-poster--search_search')
+        posterContainer.classList.add('completeMovieListSection--poster')
         posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w500${movie.poster_path}')`
-
-        trendingSearchPage.appendChild(posterContainer)
-
+        container.appendChild(posterContainer)
     });
-    
 }
 
-backButton.addEventListener('click', () => {
-    location.hash = history.back()
-})
+function getTrendingMoviesSearchPage() {
+    getMoviesCompleteView(TRENDING_MOVIE_DAY, completeMovieListSection)
+}
+
+backButton.addEventListener( 'click', () => { history.back() } )
+
+
+function seeMorePopularMovies() {
+    getMoviesCompleteView(POPULAR, completeMovieListSection, 0)
+}
+
+function seeMoreTopRateMovies() {
+    getMoviesCompleteView(DISCOVER, completeMovieListSection, 1)
+}
+
+function seeMoreUpcomingMovies() {
+    getMoviesCompleteView(UPCOMING, completeMovieListSection, 2)
+}
+
+
+searchButton.addEventListener('click', searchMovies)
+
+async function searchMovies() {
+    const { data } = await api(SEARCH_MOVIE)
+
+    const searchInput = search.value
+    console.log(location.hash + searchInput); 
+    
+}

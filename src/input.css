@@ -42,7 +42,8 @@ header {
 
 /* nav  */
 nav {
-    @apply w-4/5 h-7 mx-auto flex justify-around items-center
+    width: 375px;
+    @apply h-7 mx-auto flex justify-start items-center mt-2
 }
 
 .nav-bar--selections {
@@ -58,7 +59,7 @@ nav {
 }
 
 .search-bar {
-    @apply w-48 h-5 rounded-lg transform duration-300 focus:w-80 text-xs px-2 text-[#04619f] placeholder:text-[#04619f]
+    @apply w-48 h-5 rounded-lg transform duration-300 focus:w-72 text-xs font-semibold px-2 text-[#04619f] placeholder:text-[#04619f] outline-none focus:outline-[#04619f] placeholder:text-center placeholder:opacity-75
 }
 
 .nav-select {
@@ -76,7 +77,7 @@ main {
 }
 
 .trending-article {
-    @apply w-full h-56 items-center overflow-x-auto overscroll-x-contain flex space-x-3 snap-mandatory snap-x
+    @apply w-full h-52 items-center overflow-x-auto overscroll-x-contain flex space-x-3 snap-mandatory snap-x
 }
 
 .trending-poster {
@@ -90,19 +91,15 @@ main {
     background-position: center;
 }
 
-.trending_search {
+.completeMovieListSection {
     @apply flex justify-evenly items-end flex-wrap pb-3
 }
 
-.trending-poster--search_search {
-    @apply w-44 h-64 rounded-lg border-blue-800 border-2 mb-6
-}
-
-.trending-poster--search_search {
-    background-image: url('https://image.tmdb.org/t/p/w300/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg');
+.completeMovieListSection--poster {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    @apply w-44 h-64 rounded-lg border-blue-800 border-2 mb-6
 }
 
 .trending-poster--title {
@@ -116,7 +113,7 @@ main {
 }
 
 /* Más populaes */
-.popular, .top-rate, .upcoming {
+.popular, .top-rate, .upcoming, .movieSection {
     @apply px-4 py-1
 }
 
@@ -141,6 +138,10 @@ main {
 
 .seeMoreButton { 
     @apply mr-2 text-xs
+}
+
+.titleAndButton {
+    @apply flex items-end justify-between
 }
 
 /* footer */

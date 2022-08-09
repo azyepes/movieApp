@@ -32,21 +32,39 @@ let limitMovies = 8
 // Categorias de películas / Series (Falta series)
 async function categoriesList() {
     const { data, status } = await api(GENRE)
-
     const genres = data.genres
 
+    let i = 0
     genres.forEach(genre => {
-        const selectList = document.getElementById('categories')
-
         const option = document.createElement('option')
-        option.value = genre.name
+        option.value = i
+        i += 1
+        option.label = genre.name
         option.textContent = genre.name
 
         selectList.appendChild(option)
     });
 }
 
+selectList.addEventListener('change', categoriesPage)
+
 // categoriesList()
+async function getMoviesByCategories() {
+    const { data } = await api(GENRE)
+    const genres = data.genres
+    let i = selectList.value
+
+    console.log(i, typeof(i));
+
+    if (i != "") {
+        location.hash = `#category=${genres[i].name}-${genres[i].id}`
+    const [_, id] = location.hash.split('-')
+
+    getMoviesCompleteView(DISCOVER, completeMovieListSection, 0, {params: {'with_genres': id}})
+    } else {
+        location.hash = '#home'
+    }
+}
 
 // Obtener peliculas trending preview (Falta series)
 async function getTrendingMoviesPreview() {
@@ -138,7 +156,8 @@ async function getMostPopularMoviesPreview() {
 
 // Top peliculas mejor calificadas
 async function getTopRateMoviesPreview() {
-    getMoviesPreviewList(DISCOVER, 'topRateContainer', 'top-rate', 'top-rate-container', '#moreTopRate', 'seeMoreButtonTopRate', 1, 0, { params: { 'sort_by': 'vote_count.desc' } } ) }
+    getMoviesPreviewList(DISCOVER, 'topRateContainer', 'top-rate', 'top-rate-container', '#moreTopRate', 'seeMoreButtonTopRate', 1, 0, { params: { 'sort_by': 'vote_count.desc' } } ) 
+}
 
 // Upcoming movies
 async function getUpcomingMoviesPreview() {
@@ -160,6 +179,10 @@ async function getMoviesCompleteView(url, container, x, params = {}) {
         posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w500${movie.poster_path}')`
         container.appendChild(posterContainer)
     });
+}
+
+async function getMoviesByCategory() {
+    getMoviesCompleteView(GENRE, completeMovieListSection, 1, { params: { 'sort_by': 'vote_count.desc' } })
 }
 
 function getTrendingMoviesSearchPage() {
@@ -187,7 +210,7 @@ document.addEventListener('keypress', (event) => {
 })
 
 backButton.addEventListener( 'click', () => {
-    history.go(-2)
+    history.back()
 } )
 
 function getMoviesBySearch() {

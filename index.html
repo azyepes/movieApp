@@ -14,32 +14,37 @@
     <!-- header -->
     <header class="mb-3">
         <div id="main-banner" class="main-banner">
-            <div class="main-banner--container">
+            <div class="main-banner--container-logo">
+                <div id="backButton" class="pr-4">
+                    <i class="fa-solid fa-circle-left fa-xl"></i>
+                </div>
                 <img src="./assest/watching-a-movie.png" alt="logo-movie-at-home" width="28">
-                <h1 class="text-lg tracking-wide">Movie at HOME</h1>
+                <h2 class="text-base relative top-1">Movie at HOME</h2>
             </div>
             <div class="main-banner--container">
                 <p class="powered-by">Powered by</p>
-                <img src="./assest/logo-tmdb.svg" alt="logo-tmdb" width="96">
+                <img class="text-right" src="./assest/logo-tmdb.svg" alt="logo-tmdb" width="96">
             </div>
         </div>
         <nav id="nav" class="nav">
-            <div id="backButton" class="flex">
+            <!-- <div id="backButton" class="flex">
                 <i class="fa-solid fa-circle-chevron-left fa-xl"></i>
                 <h2 id="nav-title--section" class="title"></h2>
-            </div>
-            <div id="nav-categories" class="nav-bar--selections">
-                <label class="text-black pr-2" for="options">
+            </div> -->
+            <h2 id="nav-title--section" class="title"></h2>
+            <div id="nav-bar--selections" class="nav-bar--selections">
+                <form class="text-black pr-2" for="options">
                     <select class="nav-select" name="options" id="options">
                         <option value="Movies">Movies</option>
                         <option value="Series">Series</option>
                     </select>
-                </label>
-                <label class="text-black" for="categories">
+                </form>
+                <form name="formCategories" class="text-black" for="categories">
                     <select class="nav-select" name="categories" id="categories">
-                        <option value="">Categories</option>
+                        <option value="" selected>Categories</option>
+                        <!-- <option value="id">List of categories</option> -->
                     </select>
-                </label>
+                </form>
             </div>
             <div id="search_bar" class="nav-bar--search">
                 <input class="search-bar" type="search" name="search" id="search" placeholder="Type here..." autocomplete="off">

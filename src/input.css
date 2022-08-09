@@ -6,7 +6,7 @@
 
 html {
     background-color: #000000;
-    background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
+    background-image: linear-gradient(180deg, #000000 5%, #04619f 75%);
     background-repeat: no-repeat;
 }
 
@@ -25,11 +25,16 @@ header {
 }
 
 .main-banner {
-    @apply w-full h-auto px-2 mt-4 mb-2 flex justify-between items-center
+    border-bottom: 2px solid white;
+    @apply w-full h-auto mb-3 py-4 px-6 flex justify-between fixed top-0 bg-[#000304]
+}
+
+.main-banner--container-logo {
+    @apply h-auto flex items-end justify-center
 }
 
 .main-banner--container {
-    @apply w-1/2 h-auto flex items-center justify-center
+    @apply h-auto flex flex-col justify-end items-end
 }
 
 .powered-by {
@@ -40,7 +45,8 @@ header {
 /* nav  */
 nav {
     width: 375px;
-    @apply h-7 mx-auto flex justify-start items-center mt-2
+    margin-top: 70px;
+    @apply h-auto mx-auto
 }
 
 .nav-bar--selections {
@@ -56,11 +62,11 @@ nav {
 }
 
 .search-bar {
-    @apply w-48 h-5 rounded-lg transform duration-300 focus:w-72 text-xs font-semibold px-2 text-[#04619f] placeholder:text-[#04619f] outline-none focus:outline-[#04619f] placeholder:text-center placeholder:opacity-75
+    @apply w-48 h-5 rounded-lg transform duration-300 focus:w-72 text-xs font-semibold px-2 text-[#04619f] placeholder:text-[#04619f] outline-none focus:outline-[#04619f] placeholder:text-center placeholder:opacity-80
 }
 
 .nav-select {
-    @apply h-5 rounded-lg text-[#04619f]
+    @apply h-5 rounded-lg text-[#04619f] outline-none font-semibold text-opacity-80
 }
 
 /* main */

@@ -21,9 +21,10 @@ function navigator() {
 function homePage() {
     navCategories.classList.remove('inactive')
     trending.classList.remove('inactive')
-    completeMovieListSection.classList.add('inactive')
     searchBar.classList.add('inactive')
+    completeMovieListSection.classList.add('inactive')
     backButton.classList.add('inactive')
+    navTitleSection.classList.add('inactive')
     movieSectionContainer.classList.remove('inactive')
 
     categoriesList()
@@ -34,7 +35,16 @@ function homePage() {
 }
 
 function categoriesPage() {
-    console.log('Categories!');
+    // console.log('Categories!');
+    navCategories.classList.remove('inactive')
+    trending.classList.add('inactive')
+    searchBar.classList.remove('inactive')
+    completeMovieListSection.classList.remove('inactive')
+    backButton.classList.remove('inactive')
+    navTitleSection.classList.add('inactive')
+    movieSectionContainer.classList.add('inactive')
+
+    getMoviesByCategories()
 }
 
 function moviePage() {

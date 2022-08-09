@@ -1,7 +1,7 @@
 const $ = (id) => document.querySelector(id);
 
 // Variables de HTML
-const navCategories = $('#nav-categories')
+const navCategories = $('#nav-bar--selections')
 const mainPoster = $('#trending-article')
 const nextMovieArrow = $('#nextMovie')
 const previuosMovieArrow = $('#previuosMovie')
@@ -20,3 +20,4 @@ const seeMoreButtonUpcoming = $('#seeMoreButtonUpcoming')
 const navTitleSection = $('#nav-title--section')
 const movieSectionContainer = $('#movieSectionContainer')
 const nav = $('#nav')
+const selectList = $('#categories')

@@ -25,8 +25,9 @@ header {
 }
 
 .main-banner {
+    width: 425px;
     border-bottom: 2px solid white;
-    @apply w-full h-auto mb-3 py-4 px-6 flex justify-between fixed top-0 bg-[#000304]
+    @apply h-auto mb-3 py-4 px-6 flex justify-between fixed top-0 bg-[#000304]
 }
 
 .main-banner--container-logo {
@@ -109,6 +110,11 @@ main {
     max-width: 95%;
     background-color: rgba(0, 0, 0, 0.7);
     @apply py-1 px-2 ml-2 rounded-lg mb-2 leading-none
+}
+
+.titlePosterMissingImg {
+    background-color: rgba(0, 0, 0, 0.7);
+    @apply text-center mt-28 py-2
 }
 
 /* Más populaes */

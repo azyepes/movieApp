@@ -1,15 +1,32 @@
 // Variables URL
-const BASE_URL = 'https://api.themoviedb.org/3'
-const TRENDING_MOVIE_DAY = '/trending/movie/day'
-const LANGUAGE = '?language=en-US'
-const GENRE = '/genre/movie/list'
-const DISCOVER = '/discover/movie'
-const POPULAR = '/movie/popular'
-const TOP_RATE = '/movie/top_rated' //'/movie/latest'
-const UPCOMING = '/movie/upcoming'
-const REGION = '&region=US'
+const trending_day = {
+    movie: '/trending/movie/day',
+    tv: '/trending/tv/day',
+    all: '/trending/all/day'
+}
+const genre = {
+    movie: '/genre/movie/list',
+    tv: '/genre/tv/list'
+}
+const discover = {
+    movie: '/discover/movie',
+    tv: '/discover/tv'
+}
+const popular = {
+    movie: '/movie/popular',
+    tv: '/tv/popular'
+}
+const upcoming = {
+    movie: '/movie/upcoming',
+    tv: '/tv/on_the_air'
+}
 const SEARCH_MOVIE = '/search/movie'
 const API_KEY = "f0497c57ada4a743e060e3cbfc13deb3"
+
+options.addEventListener('change', ()=> {
+    location.hash = `#home-${options.value}`
+    
+})
 
 // Axios
 const api = axios.create({
@@ -25,61 +42,71 @@ const api = axios.create({
 });
 
 // Useful variables
-let i = 1
+// let i = 1
 let limitTrendingMoviesPreview = 19
 let limitMovies = 8
 
 // Categorias de películas / Series (Falta series)
-async function categoriesList() {
-    const { data, status } = await api(GENRE)
+async function categoriesList(url) {
+    const { data, status } = await api(url)
     const genres = data.genres
+
+    selectList.innerHTML = ''
+    const firstOption = document.createElement('option')
+    firstOption.textContent = 'Categories'
+    selectList.appendChild(firstOption)
 
     let i = 0
     genres.forEach(genre => {
         const option = document.createElement('option')
         option.value = i
         i += 1
-        option.label = genre.name
         option.textContent = genre.name
 
         selectList.appendChild(option)
     });
+
+    // const action = document.querySelector('#categories > option:nth-child(2)')
+    // action.selected = true
 }
 
 selectList.addEventListener('change', categoriesPage)
 
 // categoriesList()
-async function getMoviesByCategories() {
-    const { data } = await api(GENRE)
+async function getByCategories(url_genre, url_discover) {
+    const { data } = await api(url_genre)
     const genres = data.genres
     let i = selectList.value
-
-    console.log(i, typeof(i));
 
     if (i != "") {
         location.hash = `#category=${genres[i].name}-${genres[i].id}`
     const [_, id] = location.hash.split('-')
 
-    getMoviesCompleteView(DISCOVER, completeMovieListSection, 0, {params: {'with_genres': id}})
+    getMoviesCompleteView(url_discover, completeMovieListSection, 0, {params: {'with_genres': id}})
     } else {
         location.hash = '#home'
     }
 }
 
 // Obtener peliculas trending preview (Falta series)
-async function getTrendingMoviesPreview() {
-    const { data } = await api(TRENDING_MOVIE_DAY)
-    const movies = data.results
+async function getTrendingPreview(url) {
+    const { data } = await api(url)
+    const programs = data.results
     mainPoster.innerHTML = ""
+    // console.log(programs);
 
-    movies.forEach(movie => {
+    programs.forEach(program => {
         const posterContainer = document.createElement('div')
         posterContainer.classList.add('trending-poster')
-        posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w500${movie.backdrop_path}')`
+        posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w500${program.backdrop_path}')`
 
         const posterTitle = document.createElement('h3')
         posterTitle.classList.add('trending-poster--title')
-        posterTitle.textContent = `${movie.title}`
+        if (program.title) {
+            posterTitle.textContent = `${program.title}`
+        } else {
+            posterTitle.textContent = `${program.name}`
+        }
 
         posterContainer.appendChild(posterTitle)
         mainPoster.appendChild(posterContainer)
@@ -150,18 +177,18 @@ async function getMoviesPreviewList(url, container, idSectionName, idContainer, 
 }
 
 // Más populares
-async function getMostPopularMoviesPreview() {
-    getMoviesPreviewList(POPULAR, 'popularContainer', 'popular', 'popular-container', '#morePopular', 'seeMoreButtonPopular', 0, 0)
+async function getMostPopularPreview(url, x) {
+    getMoviesPreviewList(url, 'popularContainer', 'popular', 'popular-container', '#morePopular', 'seeMoreButtonPopular', x, 0)
 }
 
 // Top peliculas mejor calificadas
-async function getTopRateMoviesPreview() {
-    getMoviesPreviewList(DISCOVER, 'topRateContainer', 'top-rate', 'top-rate-container', '#moreTopRate', 'seeMoreButtonTopRate', 1, 0, { params: { 'sort_by': 'vote_count.desc' } } ) 
+async function getTopRatePreview(url, x) {
+    getMoviesPreviewList(url, 'topRateContainer', 'top-rate', 'top-rate-container', '#moreTopRate', 'seeMoreButtonTopRate', x, 0, { params: { 'sort_by': 'vote_count.desc' } } ) 
 }
 
 // Upcoming movies
-async function getUpcomingMoviesPreview() {
-    getMoviesPreviewList(UPCOMING, 'upcomingContainer', 'upcoming', 'upcoming-container', '#moreUpcoming', 'seeMoreButtonUpcoming', 2, 0)
+async function getUpcomingPreview(url, x) {
+    getMoviesPreviewList(url, 'upcomingContainer', 'upcoming', 'upcoming-container', '#moreUpcoming', 'seeMoreButtonUpcoming', x, 0)
 }
 
 // Movies vista completa
@@ -174,31 +201,47 @@ async function getMoviesCompleteView(url, container, x, params = {}) {
     container.innerHTML = ""
 
     movies.forEach(movie => {
-        const posterContainer = document.createElement('div')
-        posterContainer.classList.add('completeMovieListSection--poster')
-        posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w500${movie.poster_path}')`
-        container.appendChild(posterContainer)
+            const posterContainer = document.createElement('div')
+            posterContainer.classList.add('completeMovieListSection--poster')
+            if (movie.poster_path) {
+                posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w500${movie.poster_path}')`
+            } else {
+                const posterTitle = document.createElement('h3')
+                posterTitle.classList.add('titlePosterMissingImg')
+                if (movie.title) {
+                    posterTitle.textContent = `${movie.title}`
+                } else {
+                    posterTitle.textContent = `${movie.name}`
+                }
+                posterContainer.appendChild(posterTitle)
+            }
+            
+            container.appendChild(posterContainer)
     });
 }
 
-async function getMoviesByCategory() {
-    getMoviesCompleteView(GENRE, completeMovieListSection, 1, { params: { 'sort_by': 'vote_count.desc' } })
+function getTrendingSearchPage(url) {
+    getMoviesCompleteView(url, completeMovieListSection)
 }
 
-function getTrendingMoviesSearchPage() {
-    getMoviesCompleteView(TRENDING_MOVIE_DAY, completeMovieListSection)
+function getMorePopular(url, x) {
+    getMoviesCompleteView(url, completeMovieListSection, x)
 }
 
-function seeMorePopularMovies() {
-    getMoviesCompleteView(POPULAR, completeMovieListSection, 0)
+function getMoreTopRate(url, x) {
+    getMoviesCompleteView(url, completeMovieListSection, x, { params: { 'sort_by': 'vote_count.desc' } })
 }
 
-function seeMoreTopRateMovies() {
-    getMoviesCompleteView(DISCOVER, completeMovieListSection, 1, { params: { 'sort_by': 'vote_count.desc' } })
+function getMoreUpcoming(url, x) {
+    getMoviesCompleteView(url, completeMovieListSection, x)
 }
 
-function seeMoreUpcomingMovies() {
-    getMoviesCompleteView(UPCOMING, completeMovieListSection, 2)
+function getMoviesBySearch() {
+    location.hash = `#search=${search.value}`
+    const [_, value] = location.hash.split('=')
+    const query = decodeURI(value.trim())
+
+    getMoviesCompleteView(SEARCH_MOVIE, completeMovieListSection, 0, { params: { query, 'sort_by': 'vote_count.desc' } })
 }
 
 searchButton.addEventListener('click', getMoviesBySearch)
@@ -212,12 +255,3 @@ document.addEventListener('keypress', (event) => {
 backButton.addEventListener( 'click', () => {
     history.back()
 } )
-
-function getMoviesBySearch() {
-    location.hash = `#search=${search.value}`
-    const [_, value] = location.hash.split('=')
-    const query = decodeURI(value.trim())
-
-    getMoviesCompleteView(SEARCH_MOVIE, completeMovieListSection, 0, { params: { query, 'sort_by': 'vote_count.desc' } })
-}
-

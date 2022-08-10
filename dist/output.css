@@ -591,13 +591,13 @@ header {
 }
 
 .main-banner {
+  width: 425px;
   border-bottom: 2px solid white;
   position: fixed;
   top: 0px;
   margin-bottom: 0.75rem;
   display: flex;
   height: auto;
-  width: 100%;
   justify-content: space-between;
   --tw-bg-opacity: 1;
   background-color: rgb(0 3 4 / var(--tw-bg-opacity));
@@ -801,6 +801,14 @@ main {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   line-height: 1
+}
+
+.titlePosterMissingImg {
+  background-color: rgba(0, 0, 0, 0.7);
+  margin-top: 7rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  text-align: center
 }
 
 /* Más populaes */

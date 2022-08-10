@@ -14,7 +14,7 @@ function navigator() {
         morePage()
     } else {
         homePage()
-        location.hash = '#home'
+        // location.hash = '#home'
     }
     window.scrollTo(0,0)
 }
@@ -55,11 +55,13 @@ function categoriesPage() {
     navTitleSection.classList.add('inactive')
     movieSectionContainer.classList.add('inactive')
     
+    const [_, id] = location.hash.split('-')
+
     // getByCategories
     if (options.value === 'tv') {
-        getByCategories(genre.tv, discover.tv)
+        getByCategories(discover.tv, id)
     } else if (options.value === 'movie') {
-        getByCategories(genre.movie, discover.movie)
+        getByCategories(discover.movie, id)
     } 
 
     // getMoviesByCategories()
@@ -78,11 +80,21 @@ function searchPage() {
     navTitleSection.classList.add('inactive')
     movieSectionContainer.classList.add('inactive')
 
-    if (options.value === 'tv') {
+    const [_, value] = location.hash.split('=')
+    const query = decodeURI(value.trim())
+
+    if (options.value === 'tv' && location.hash === '#search=') {
         getTrendingSearchPage(trending_day.tv)
-    } else if (options.value === 'movie') {
+    } else if (options.value === 'movie' && location.hash === '#search=') {
         getTrendingSearchPage(trending_day.movie)
-    } 
+    } else {
+        if (options.value === 'tv') {
+            getBySearch(searchUrl.tv, query)
+        } else if (options.value === 'movie') {
+            getBySearch(searchUrl.movie, query)
+        }
+        
+    }
     // getTrendingMoviesSearchPage()
 }
 

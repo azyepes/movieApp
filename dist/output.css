@@ -591,20 +591,20 @@ header {
 }
 
 .main-banner {
-  width: 425px;
+  width: 100%;
   border-bottom: 2px solid white;
   position: fixed;
   top: 0px;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 0.75rem;
   display: flex;
   height: auto;
-  justify-content: space-between;
+  justify-content: space-around;
   --tw-bg-opacity: 1;
   background-color: rgb(0 3 4 / var(--tw-bg-opacity));
   padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem
+  padding-bottom: 1rem
 }
 
 .main-banner--container-logo {
@@ -630,7 +630,7 @@ header {
 /* nav  */
 
 nav {
-  width: 375px;
+  width: 100%;
   margin-top: 70px;
   margin-left: auto;
   margin-right: auto;
@@ -742,8 +742,8 @@ main {
 
 .trending-article > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
-  margin-right: calc(0.75rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
+  margin-right: calc(3rem * var(--tw-space-x-reverse));
+  margin-left: calc(3rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
 .trending-article {

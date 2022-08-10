@@ -25,9 +25,9 @@ header {
 }
 
 .main-banner {
-    width: 425px;
+    width: 100%;
     border-bottom: 2px solid white;
-    @apply h-auto mb-3 py-4 px-6 flex justify-between fixed top-0 bg-[#000304]
+    @apply h-auto mb-3 py-4 mx-auto flex justify-around fixed top-0 bg-[#000304]
 }
 
 .main-banner--container-logo {
@@ -45,7 +45,7 @@ header {
 
 /* nav  */
 nav {
-    width: 375px;
+    width: 100%;
     margin-top: 70px;
     @apply h-auto mx-auto
 }
@@ -81,7 +81,7 @@ main {
 }
 
 .trending-article {
-    @apply w-full h-52 items-center overflow-x-auto overscroll-x-contain flex space-x-3 snap-mandatory snap-x
+    @apply w-full h-52 items-center overflow-x-auto overscroll-x-contain flex space-x-12 snap-mandatory snap-x
 }
 
 .trending-poster {

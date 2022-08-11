@@ -2,7 +2,8 @@ let titles = {
     0: 'Most Popular',
     1: 'Top Rated',
     2: 'Upcoming',
-    3: 'On The Air'
+    3: 'On The Air',
+    4: 'Similar Movies'
 }
 
 let buttons = {

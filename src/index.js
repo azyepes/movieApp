@@ -24,6 +24,10 @@ const searchUrl = {
     movie: '/search/movie',
     tv: '/search/tv'
 }
+const details = {
+    movie: '/movie/',
+    tv: '/tv/'
+}
 const API_KEY = "f0497c57ada4a743e060e3cbfc13deb3"
 
 options.addEventListener('change', ()=> {
@@ -69,8 +73,6 @@ async function categoriesList(url) {
     });
 }
 
-
-
 selectList.addEventListener('change', () => {
     const text = selectList.options[selectList.selectedIndex].innerHTML
     location.hash = `#category=${text}-${selectList.value}`
@@ -87,6 +89,7 @@ async function getByCategories(url_discover, id) {
 async function getTrendingPreview(url) {
     const { data } = await api(url)
     const programs = data.results
+
     mainPoster.innerHTML = ""
     // console.log(programs);
 
@@ -94,6 +97,9 @@ async function getTrendingPreview(url) {
         const posterContainer = document.createElement('div')
         posterContainer.classList.add('trending-poster')
         posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w500${program.backdrop_path}')`
+        posterContainer.addEventListener('click', () => {
+            location.hash = `#movie=${program.id}`
+        })
 
         const posterTitle = document.createElement('h3')
         posterTitle.classList.add('trending-poster--title')
@@ -160,21 +166,24 @@ async function getMoviesPreviewList(url, container, idSectionName, idContainer, 
     container.innerHTML = ""
 
     for (let i = 0; i < limitMovies; i++) {
-        const movie = data.results[i];
+        const program = data.results[i];
         const posterContainer = document.createElement('div')
         posterContainer.classList.add('popular-poster')
-        if (movie.poster_path) {
-            posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w300${movie.poster_path}')`
+        if (program.poster_path) {
+            posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w300${program.poster_path}')`
         } else {
             const posterTitle = document.createElement('h3')
             posterTitle.classList.add('titlePosterMissingImg')
-            if (movie.title) {
-                posterTitle.textContent = `${movie.title}`
+            if (program.title) {
+                posterTitle.textContent = `${program.title}`
             } else {
-                posterTitle.textContent = `${movie.name}`
+                posterTitle.textContent = `${program.name}`
             }
             posterContainer.appendChild(posterTitle)
         }
+        posterContainer.addEventListener('click', () => {
+            location.hash = `#movie=${program.id}`
+        })
 
         container.appendChild(posterContainer)
     }  
@@ -202,27 +211,30 @@ async function getUpcomingPreview(url, x) {
 async function getMoviesCompleteView(url, container, x, params = {}) {
     const { data } = await api(url, params)
 
-    const movies = data.results
+    const programs = data.results
 
     navTitleSection.textContent = titles[x]
     container.innerHTML = ""
 
-    movies.forEach(movie => {
+    programs.forEach(program => {
             const posterContainer = document.createElement('div')
             posterContainer.classList.add('completeMovieListSection--poster')
-            if (movie.poster_path) {
-                posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w500${movie.poster_path}')`
+            if (program.poster_path) {
+                posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w500${program.poster_path}')`
             } else {
                 const posterTitle = document.createElement('h3')
                 posterTitle.classList.add('titlePosterMissingImg')
-                if (movie.title) {
-                    posterTitle.textContent = `${movie.title}`
+                if (program.title) {
+                    posterTitle.textContent = `${program.title}`
                 } else {
-                    posterTitle.textContent = `${movie.name}`
+                    posterTitle.textContent = `${program.name}`
                 }
                 posterContainer.appendChild(posterTitle)
             }
-            
+            posterContainer.addEventListener('click', (event) => {
+                console.log(event);
+                location.hash = `#movie=${program.id}`
+            })
             container.appendChild(posterContainer)
     });
 }
@@ -261,3 +273,26 @@ document.addEventListener('keypress', (event) => {
 backButton.addEventListener( 'click', () => {
     history.back()
 } )
+
+async function getDetailsById(id, url, params = {}) {
+    const { data } = await api(url + id, params)
+
+    const [releaseYear, month, day] = data.release_date.split('-')
+
+    detailsPoster.style.backgroundImage = `url('https://image.tmdb.org/t/p/w500${data.backdrop_path}')`
+
+    year.textContent = `Year: ${releaseYear}`
+    rate.textContent = `Rate: ${data.vote_average}`
+
+    detailsPosterTitle.textContent = data.original_title
+
+    genreDetails.textContent = data.genres[0].name
+    for (let i = 1; i < data.genres.length; i++) {
+        const element = data.genres[i].name;
+        genreDetails.textContent += ` • ${element}`
+    }
+    
+    overview.textContent = data.overview
+
+    getMoviesCompleteView(`${url}${data.id}/similar`, completeMovieListSection, 4, { params: { 'sort_by': 'vote_count.desc' } })
+}

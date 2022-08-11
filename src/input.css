@@ -16,7 +16,7 @@ html {
 
 body {
     max-width: 425px;
-    @apply w-full h-screen h-full
+    @apply h-screen h-full
 }
 
 /* header */
@@ -25,9 +25,9 @@ header {
 }
 
 .main-banner {
-    width: 100%;
+    width: 425px;
     border-bottom: 2px solid white;
-    @apply h-auto mb-3 py-4 mx-auto flex justify-around fixed top-0 bg-[#000304]
+    @apply h-auto py-4 flex justify-around fixed top-0 bg-[#000304]
 }
 
 .main-banner--container-logo {
@@ -38,20 +38,38 @@ header {
     @apply h-auto flex flex-col justify-end items-end
 }
 
+.detailsPoster-container {
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 70%, transparent 100%);
+}
+
+.detailsPoster {
+    width: 425px;
+    height: 238px;
+    /* background-image: url('https://image.tmdb.org/t/p/w500/nlCHUWjY9XWbuEUQauCBgnY8ymF.jpg'); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    margin-bottom: 30px;
+}
+
 .powered-by {
     font-size: 0.6rem;
     padding-right: 0.3rem;
 }
 
+/* .starIcon {
+    @apply fa-solid fa-star
+} */
+
 /* nav  */
 nav {
     width: 100%;
-    margin-top: 70px;
+    margin-top: 60px;
     @apply h-auto mx-auto
 }
 
 .nav-bar--selections {
-    @apply  w-full h-auto flex items-center text-xs justify-around p-1
+    @apply  w-full h-auto flex items-center text-xs justify-around p-1 pt-4
 }
 
 .nav-bar--search {
@@ -134,7 +152,11 @@ main {
 }
 
 .title {
-    @apply text-lg tracking-wide font-semibold pl-3
+    @apply text-lg tracking-wide font-semibold pl-1
+}
+
+.secondTitle {
+    @apply text-lg tracking-wide font-semibold pl-7
 }
 
 .seeMoreButton { 

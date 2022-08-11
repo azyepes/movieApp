@@ -20,6 +20,9 @@ function navigator() {
 }
 
 function homePage() {
+
+    similarTitles.classList.add('inactive')
+    detailsSection.classList.add('inactive')
     navCategories.classList.remove('inactive')
     trending.classList.remove('inactive')
     searchBar.classList.add('inactive')
@@ -47,6 +50,9 @@ function homePage() {
 
 function categoriesPage() {
     // console.log('Categories!');
+
+    similarTitles.classList.add('inactive')
+    detailsSection.classList.add('inactive')
     navCategories.classList.remove('inactive')
     trending.classList.add('inactive')
     searchBar.classList.add('inactive')
@@ -69,9 +75,31 @@ function categoriesPage() {
 
 function moviePage() {
     console.log('Movies!');
+
+    similarTitles.classList.remove('inactive')
+    detailsSection.classList.remove('inactive')
+    navCategories.classList.add('inactive')
+    trending.classList.add('inactive')
+    searchBar.classList.add('inactive')
+    completeMovieListSection.classList.remove('inactive')
+    backButton.classList.remove('inactive')
+    navTitleSection.classList.add('inactive')
+    movieSectionContainer.classList.add('inactive')
+
+    const [_, id] = location.hash.split('=')
+
+    if (options.value === 'tv') {
+        getDetailsById(id, details.tv)
+    } else if (options.value === 'movie') {
+        getDetailsById(id, details.movie)
+    } 
+    
 }
 
 function searchPage() {
+
+    similarTitles.classList.add('inactive')
+    detailsSection.classList.add('inactive')
     navCategories.classList.add('inactive')
     trending.classList.add('inactive')
     searchBar.classList.remove('inactive')
@@ -104,6 +132,8 @@ function trendPage() {
 
 function morePage() {
 
+    similarTitles.classList.add('inactive')
+    detailsSection.classList.add('inactive')
     navCategories.classList.add('inactive')
     trending.classList.add('inactive')
     searchBar.classList.add('inactive')

@@ -6,8 +6,8 @@ function navigator() {
         trendPage()
     } else if (location.hash.startsWith('#search=')) {
         searchPage()
-    } else if (location.hash.startsWith('#movie=')) {
-        moviePage()
+    } else if (location.hash.startsWith('#program=')) {
+        programPage()
     } else if (location.hash.startsWith('#category=')) {
         categoriesPage()
     } else if (location.hash.startsWith('#more')) {
@@ -29,7 +29,8 @@ function homePage() {
     completeMovieListSection.classList.add('inactive')
     backButton.classList.add('inactive')
     navTitleSection.classList.add('inactive')
-    movieSectionContainer.classList.remove('inactive')    
+    movieSectionContainer.classList.remove('inactive')
+    nav.classList.remove('inactive')    
 
     if (options.value === 'tv') {
         getTrendingPreview(trending_day.tv)
@@ -60,6 +61,7 @@ function categoriesPage() {
     backButton.classList.remove('inactive')
     navTitleSection.classList.add('inactive')
     movieSectionContainer.classList.add('inactive')
+    nav.classList.remove('inactive')
     
     const [_, id] = location.hash.split('-')
 
@@ -73,7 +75,7 @@ function categoriesPage() {
     // getMoviesByCategories()
 }
 
-function moviePage() {
+function programPage() {
     console.log('Movies!');
 
     similarTitles.classList.remove('inactive')
@@ -85,6 +87,7 @@ function moviePage() {
     backButton.classList.remove('inactive')
     navTitleSection.classList.add('inactive')
     movieSectionContainer.classList.add('inactive')
+    nav.classList.add('inactive')
 
     const [_, id] = location.hash.split('=')
 
@@ -107,6 +110,7 @@ function searchPage() {
     backButton.classList.remove('inactive')
     navTitleSection.classList.add('inactive')
     movieSectionContainer.classList.add('inactive')
+    nav.classList.remove('inactive')
 
     const [_, value] = location.hash.split('=')
     const query = decodeURI(value.trim())
@@ -141,6 +145,7 @@ function morePage() {
     backButton.classList.remove('inactive')
     navTitleSection.classList.remove('inactive')
     movieSectionContainer.classList.add('inactive')
+    nav.classList.remove('inactive')
 
     if (location.hash === '#morePopular') {
         if (options.value === 'tv') {

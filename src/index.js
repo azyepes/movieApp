@@ -91,14 +91,14 @@ async function getTrendingPreview(url) {
     const programs = data.results
 
     mainPoster.innerHTML = ""
-    // console.log(programs);
+    console.log(programs);
 
     programs.forEach(program => {
         const posterContainer = document.createElement('div')
         posterContainer.classList.add('trending-poster')
         posterContainer.style.backgroundImage = `url('https://image.tmdb.org/t/p/w500${program.backdrop_path}')`
         posterContainer.addEventListener('click', () => {
-            location.hash = `#movie=${program.id}`
+            location.hash = `#program=${program.id}`
         })
 
         const posterTitle = document.createElement('h3')
@@ -182,7 +182,7 @@ async function getMoviesPreviewList(url, container, idSectionName, idContainer, 
             posterContainer.appendChild(posterTitle)
         }
         posterContainer.addEventListener('click', () => {
-            location.hash = `#movie=${program.id}`
+            location.hash = `#program=${program.id}`
         })
 
         container.appendChild(posterContainer)
@@ -233,7 +233,7 @@ async function getMoviesCompleteView(url, container, x, params = {}) {
             }
             posterContainer.addEventListener('click', (event) => {
                 console.log(event);
-                location.hash = `#movie=${program.id}`
+                location.hash = `#program=${program.id}`
             })
             container.appendChild(posterContainer)
     });
@@ -277,14 +277,24 @@ backButton.addEventListener( 'click', () => {
 async function getDetailsById(id, url, params = {}) {
     const { data } = await api(url + id, params)
 
-    const [releaseYear, month, day] = data.release_date.split('-')
+    detailsPoster.src = `https://image.tmdb.org/t/p/w500${data.backdrop_path}`
 
-    detailsPoster.style.backgroundImage = `url('https://image.tmdb.org/t/p/w500${data.backdrop_path}')`
+    // const [releaseYear, month, day] = data.release_date.split('-')
+    // const [releaseYearTv, monthTv, dayTv] = data.first_air_date.split('-')
 
-    year.textContent = `Year: ${releaseYear}`
+    if (data.release_date) {
+        detailsPoster.alt = data.original_title
+        const [releaseYear, month, day] = data.release_date.split('-')
+        year.textContent = `Year: ${releaseYear}`
+        detailsPosterTitle.textContent = data.original_title
+    } else {
+        detailsPoster.alt = data.name
+        const [releaseYear, month, day] = data.first_air_date.split('-')
+        year.textContent = `Year: ${releaseYear}`
+        detailsPosterTitle.textContent = data.name
+    }
+    
     rate.textContent = `Rate: ${data.vote_average}`
-
-    detailsPosterTitle.textContent = data.original_title
 
     genreDetails.textContent = data.genres[0].name
     for (let i = 1; i < data.genres.length; i++) {
